@@ -1,0 +1,40 @@
+{
+  "name": "text-processor-module",
+  "version": "1.0.0",
+  "description": "A JavaScript module for text processing and transformation",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "scripts": {
+    "start": "node test-app/app.js",
+    "test": "node test-app/test-runner.js",
+    "lint": "npx eslint ./src",
+    "lint:fix": "npx eslint ./src --fix"
+  },
+  "contributors": [
+    "Hanna Rubio Vretby <hr222sy@student.lnu.se>"
+  ],
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "text",
+    "processing",
+    "string",
+    "utility",
+    "transformation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dittanvändarnamn/text-processor-module.git"
+  },
+  "files": [
+    "src/",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.10",
+    "eslint": "^8.57.0"
+  }
+}
