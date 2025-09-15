@@ -13,3 +13,7 @@ console.log ('=== Testing Subscription Class ===')
 //Test basic functionality
 const netflix = new Subscription("Netflix", 139, "monthly")
 console.log(`${netflix.name}: ${netflix.getMonthlyPrice()} kr/month`)
+
+//Test yearly conversion
+const spotify = new Subscription("Spotify", 1200, "yearly")
+console.log(`${spotify.name}: ${spotify.getMonthlyPrice()} kr/month`)
