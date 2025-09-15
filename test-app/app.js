@@ -30,3 +30,16 @@ console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
 
 netflix.activate()
 console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
+
+// Test usage tracking
+console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)
+
+netflix.addUsage(15)
+console.log(`Netflix after adding 15 hours: ${netflix.getUsageHours()} hours`)
+
+const costPerHour = netflix.getCostPerHour()
+if (costPerHour) {
+  console.log(`Netflix cost per hour: ${costPerHour.toFixed(2)} kr/hour`)
+} else {
+  console.log('Netflix cost per hour: No usage recorded')
+}

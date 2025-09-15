@@ -16,6 +16,7 @@ export class Subscription {
     this.frequency = frequency
     this.category = category
     this.isActive = true
+    this.usageHours = 0
   }
 
   validateName(name) {
@@ -57,5 +58,22 @@ export class Subscription {
 
   getActiveStatus() {
     return this.isActive
+  }
+
+  addUsage(hours) {
+    if (hours > 0) {
+      this.usageHours += hours
+    }
+  }
+
+  getUsageHours() {
+    return this.usageHours
+  }
+
+  getCostPerHour() {
+    if (this.usageHours === 0) {
+      return null
+    }
+    return this.getMonthlyPrice() / this.usageHours
   }
 }
