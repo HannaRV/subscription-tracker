@@ -21,3 +21,12 @@ console.log(`${spotify.name} (${spotify.category}): ${spotify.getMonthlyPrice()}
 //Test weekly conversion
 const sats = new Subscription("SATS", 150, "weekly", "fitness")
 console.log(`${sats.name} (${sats.category}): ${sats.getMonthlyPrice()} kr/month`)
+
+// Test active/inactive functionality
+console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
+
+netflix.deactivate()
+console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
+
+netflix.activate()
+console.log(`Netflix active status: ${netflix.getActiveStatus()}`)

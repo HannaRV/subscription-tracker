@@ -15,6 +15,7 @@ export class Subscription {
     this.price = price
     this.frequency = frequency
     this.category = category
+    this.isActive = true
   }
 
   validateName(name) {
@@ -44,5 +45,17 @@ export class Subscription {
       return this.price / 12
     }
     return this.price
+  }
+
+  deactivate() {
+    this.isActive = false
+  }
+
+  activate() {
+    this.isActive = true
+  }
+
+  getActiveStatus() {
+    return this.isActive
   }
 }
