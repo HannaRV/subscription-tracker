@@ -1,7 +1,7 @@
 {
-  "name": "text-processor-module",
+  "name": "subscription-tracker",
   "version": "1.0.0",
-  "description": "A JavaScript module for text processing and transformation",
+  "description": "A JavaScript module for subscription tracking",
   "type": "module",
   "main": "src/index.js",
   "engines": {
@@ -19,15 +19,15 @@
   "license": "MIT",
   "private": false,
   "keywords": [
-    "text",
-    "processing",
-    "string",
-    "utility",
-    "transformation"
+  "subscription",
+  "tracking", 
+  "personal-finance",
+  "cost-calculator",
+  "usage-analyzer"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dittanvändarnamn/text-processor-module.git"
+    "url": "https://github.com/HannaRV/1dv610-L2.git"
   },
   "files": [
     "src/",
