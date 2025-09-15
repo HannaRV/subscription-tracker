@@ -17,3 +17,7 @@ console.log(`${netflix.name}: ${netflix.getMonthlyPrice()} kr/month`)
 //Test yearly conversion
 const spotify = new Subscription("Spotify", 1200, "yearly")
 console.log(`${spotify.name}: ${spotify.getMonthlyPrice()} kr/month`)
+
+//Test weekly conversion
+const sats = new Subscription("SATS", 150, "weekly")
+console.log(`${sats.name}: ${sats.getMonthlyPrice()} kr/month`)
