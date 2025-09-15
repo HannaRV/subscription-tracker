@@ -6,7 +6,7 @@
  */
 
 export class Subscription {
-  constructor(name, price, frequency) {
+  constructor(name, price, frequency, category = "other") {
     this.validateName(name)
     this.validatePrice(price)
     this.validateFrequency(frequency)
@@ -14,6 +14,7 @@ export class Subscription {
     this.name = name
     this.price = price
     this.frequency = frequency
+    this.category = category
   }
 
   validateName(name) {

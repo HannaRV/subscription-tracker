@@ -11,13 +11,13 @@ import { Subscription } from "../src/Subscription.js"
 console.log ('=== Testing Subscription Class ===')
 
 //Test basic functionality
-const netflix = new Subscription("Netflix", 139, "monthly")
-console.log(`${netflix.name}: ${netflix.getMonthlyPrice()} kr/month`)
+const netflix = new Subscription("Netflix", 139, "monthly", "streaming")
+console.log(`${netflix.name} (${netflix.category}): ${netflix.getMonthlyPrice()} kr/month`)
 
 //Test yearly conversion
-const spotify = new Subscription("Spotify", 1200, "yearly")
-console.log(`${spotify.name}: ${spotify.getMonthlyPrice()} kr/month`)
+const spotify = new Subscription("Spotify", 1200, "yearly", "music")
+console.log(`${spotify.name} (${spotify.category}): ${spotify.getMonthlyPrice()} kr/month`)
 
 //Test weekly conversion
-const sats = new Subscription("SATS", 150, "weekly")
-console.log(`${sats.name}: ${sats.getMonthlyPrice()} kr/month`)
+const sats = new Subscription("SATS", 150, "weekly", "fitness")
+console.log(`${sats.name} (${sats.category}): ${sats.getMonthlyPrice()} kr/month`)
