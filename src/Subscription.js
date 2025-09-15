@@ -6,5 +6,19 @@
  */
 
 export class Subscription {
-    
+  constructor(name, price, frequency) {
+    this.name = name
+    this.price = price
+    this.frequency = frequency
+  }
+
+  getMonthlyPrice() {
+    if (this.frequency === 'weekly') {
+      return this.price * 4.33
+    }
+    if (this.frequency === 'yearly') {
+      return this.price / 12
+    }
+    return this.price
+  }
 }
