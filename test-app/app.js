@@ -6,7 +6,7 @@
  * @description Demonstrates and tests the functionality of the subscription tracker module.
  */
 
-import { Subscription } from "../src/Subscription.js"
+import { Subscription, SubscriptionManager } from "../src/index.js"
 
 console.log ('=== Testing Subscription Class ===')
 
@@ -43,3 +43,10 @@ if (costPerHour) {
 } else {
   console.log('Netflix cost per hour: No usage recorded')
 }
+
+//Test multiple subscriptions
+const manager = new SubscriptionManager()
+manager.addSubscription(netflix)
+manager.addSubscription(spotify)
+
+console.log(`Total subscriptions: ${manager.getSubscriptions().length}`)

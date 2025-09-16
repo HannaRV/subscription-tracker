@@ -6,5 +6,20 @@
  */
 
 export class SubscriptionManager {
-    
+    constructor() {
+        this.subscriptions = []
+    }
+
+    addSubscription(subscription) {
+        this.subscriptions.push(subscription)
+    }
+
+    getSubscriptions() {
+        return this.subscriptions
+    }
+
+    getActiveSubscriptions() {
+        return this.subscriptions.filter(sub => sub.getActiveStatus())
+    }
+
 }
