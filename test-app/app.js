@@ -34,7 +34,7 @@ console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
 // Test usage tracking
 console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)
 
-netflix.addUsage(15)
+netflix.addUsageHours(15)
 console.log(`Netflix after adding 15 hours: ${netflix.getUsageHours()} hours`)
 
 const costPerHour = netflix.getCostPerHour()

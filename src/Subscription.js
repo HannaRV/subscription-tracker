@@ -11,10 +11,13 @@ export class Subscription {
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
   constructor(name, price, frequency, category = "other") {
+
+    // Validate inputs
     this.validateName(name)
     this.validatePrice(price)
     this.validateFrequency(frequency)
 
+    // Initialize properties
     this.name = name
     this.price = price
     this.frequency = frequency
@@ -43,7 +46,7 @@ export class Subscription {
 
   getMonthlyPrice() {
     if (this.frequency === 'weekly') {
-       return this.price * Subscription.WEEKS_PER_MONTH
+      return this.price * Subscription.WEEKS_PER_MONTH
     }
     if (this.frequency === 'yearly') {
       return this.price / Subscription.MONTHS_PER_YEAR
@@ -63,7 +66,7 @@ export class Subscription {
     return this.isActive
   }
 
-  addUsage(hours) {
+  addUsageHours(hours) {
     if (hours > 0) {
       this.usageHours += hours
     }
