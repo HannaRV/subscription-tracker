@@ -22,4 +22,12 @@ export class SubscriptionManager {
         return this.subscriptions.filter(sub => sub.getActiveStatus())
     }
 
+    findSubscriptionByName(name) {
+        return this.subscriptions.find(subscription => subscription.name === name)
+    }
+
+    getSubscriptionsByCategory(category) {
+        return this.subscriptions.filter(subscription => subscription.category === category)
+    }
+
 }

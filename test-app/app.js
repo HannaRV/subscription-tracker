@@ -44,9 +44,23 @@ if (costPerHour) {
   console.log('Netflix cost per hour: No usage recorded')
 }
 
+console.log ('=== Testing SubscriptionManager Class ===')
+
 //Test multiple subscriptions
 const manager = new SubscriptionManager()
 manager.addSubscription(netflix)
 manager.addSubscription(spotify)
 
 console.log(`Total subscriptions: ${manager.getSubscriptions().length}`)
+
+//Test find subscription by name
+const foundSubscription = manager.findSubscriptionByName('Netflix')
+if (foundSubscription) {
+    console.log(`Found: ${foundSubscription.name}`)
+} else {
+    console.log('Subscription not found')
+}
+
+//Test filtering subscriptions by category
+const streamingServices = manager.getSubscriptionsByCategory('streaming')
+console.log(`Streaming services: ${streamingServices.length}`)
