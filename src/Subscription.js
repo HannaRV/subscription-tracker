@@ -6,6 +6,10 @@
  */
 
 export class Subscription {
+  static WEEKS_PER_MONTH = 4.33
+  static MONTHS_PER_YEAR = 12
+  static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
+
   constructor(name, price, frequency, category = "other") {
     this.validateName(name)
     this.validatePrice(price)
@@ -32,18 +36,17 @@ export class Subscription {
   }
 
   validateFrequency(frequency) {
-    const validFrequencies = ['weekly', 'monthly', 'yearly']
-    if (!validFrequencies.includes(frequency)) {
+    if (!Subscription.VALID_FREQUENCIES.includes(frequency)) {
       throw new Error('Frequency must be weekly, monthly, or yearly')
     }
   }
 
   getMonthlyPrice() {
     if (this.frequency === 'weekly') {
-      return this.price * 4.33
+       return this.price * Subscription.WEEKS_PER_MONTH
     }
     if (this.frequency === 'yearly') {
-      return this.price / 12
+      return this.price / Subscription.MONTHS_PER_YEAR
     }
     return this.price
   }
