@@ -6,19 +6,19 @@
  */
 
 export class Subscription {
-  // Class constants
+  //Class constants
   static WEEKS_PER_MONTH = 4.33
   static MONTHS_PER_YEAR = 12
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
   constructor(name, price, frequency, category = 'other') {
 
-    // Validate inputs
+    //Validate inputs
     this.validateName(name)
     this.validatePrice(price)
     this.validateFrequency(frequency)
 
-    // Initialize properties
+    //Initialize properties
     this.name = name
     this.price = price
     this.frequency = frequency
@@ -35,8 +35,8 @@ export class Subscription {
   }
 
   validatePrice(price) {
-    if (!price || price <= 0) {
-      throw new Error('Price must be a positive number')
+    if (price === null || price < 0) {
+      throw new Error('Price must be 0 or higher')
     }
   }
 
