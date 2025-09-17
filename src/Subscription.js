@@ -6,11 +6,12 @@
  */
 
 export class Subscription {
+  // Class constants
   static WEEKS_PER_MONTH = 4.33
   static MONTHS_PER_YEAR = 12
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
-  constructor(name, price, frequency, category = "other") {
+  constructor(name, price, frequency, category = 'other') {
 
     // Validate inputs
     this.validateName(name)
@@ -26,6 +27,7 @@ export class Subscription {
     this.usageHours = 0
   }
 
+  //Input validation methods
   validateName(name) {
     if (!name || typeof name !== 'string') {
       throw new Error('Name must be a non-empty string')
@@ -44,6 +46,7 @@ export class Subscription {
     }
   }
 
+  //Price calculation methods
   getMonthlyPrice() {
     if (this.frequency === 'weekly') {
       return this.price * Subscription.WEEKS_PER_MONTH
@@ -54,6 +57,7 @@ export class Subscription {
     return this.price
   }
 
+  //Status management methods
   deactivate() {
     this.isActive = false
   }
@@ -66,6 +70,7 @@ export class Subscription {
     return this.isActive
   }
 
+  //Usage tracking methods
   addUsageHours(hours) {
     if (hours > 0) {
       this.usageHours += hours
