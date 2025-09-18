@@ -12,15 +12,15 @@ console.log ('=== Testing Subscription Class ===')
 
 //Test basic functionality
 const netflix = new Subscription('Netflix', 139, 'monthly', 'streaming')
-console.log(`${netflix.name} (${netflix.category}): ${netflix.getMonthlyPrice()} kr/month`)
+console.log(`${netflix.getName()} (${netflix.getCategory()}): ${netflix.getMonthlyPrice()} kr/month`)
 
 //Test yearly conversion
 const spotify = new Subscription('Spotify', 1200, 'yearly', 'music')
-console.log(`${spotify.name} (${spotify.category}): ${spotify.getMonthlyPrice()} kr/month`)
+console.log(`${spotify.getName()} (${spotify.getCategory()}): ${spotify.getMonthlyPrice()} kr/month`)
 
 //Test weekly conversion
 const sats = new Subscription('SATS', 150, 'weekly', 'fitness')
-console.log(`${sats.name} (${sats.category}): ${sats.getMonthlyPrice()} kr/month`)
+console.log(`${sats.getName()} (${sats.getCategory()}): ${sats.getMonthlyPrice()} kr/month`)
 
 // Test active/inactive functionality
 console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
@@ -56,7 +56,7 @@ console.log(`Total subscriptions: ${manager.getSubscriptions().length}`)
 //Test find subscription by name
 const foundSubscription = manager.findSubscriptionByName('Netflix')
 if (foundSubscription) {
-    console.log(`Found: ${foundSubscription.name}`)
+    console.log(`Found: ${foundSubscription.getName()}`)
 } else {
     console.log('Subscription not found')
 }

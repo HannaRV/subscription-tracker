@@ -23,11 +23,11 @@ export class SubscriptionManager {
     }
 
     findSubscriptionByName(name) {
-        return this.subscriptions.find(subscription => subscription.name === name)
+        return this.subscriptions.find(subscription => subscription.getName() === name)
     }
 
     getSubscriptionsByCategory(category) {
-        return this.subscriptions.filter(subscription => subscription.category === category)
+        return this.subscriptions.filter(subscription => subscription.getCategory() === category)
     }
 
 }
