@@ -35,7 +35,7 @@ export class Subscription {
   }
 
   validatePrice(price) {
-    if (price === null || price < 0) {
+    if (price === null || price === undefined || price < 0) {
       throw new Error('Price must be 0 or higher')
     }
   }
