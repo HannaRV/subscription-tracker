@@ -23,13 +23,13 @@ const sats = new Subscription('SATS', 150, 'weekly', 'fitness')
 console.log(`${sats.getName()} (${sats.getCategory()}): ${sats.getMonthlyPrice()} kr/month`)
 
 // Test active/inactive functionality
-console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
+console.log(`Netflix initial active status is: ${netflix.isActive()}`)
 
 netflix.deactivate()
-console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
+console.log(`Netflix is now ${netflix.isActive() ? 'active' : 'deactivated'}`)
 
 netflix.activate()
-console.log(`Netflix active status: ${netflix.getActiveStatus()}`)
+console.log(`Netflix is now ${netflix.isActive() ? 'active' : 'deactivated'}`)
 
 // Test usage tracking
 console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)

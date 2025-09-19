@@ -11,11 +11,11 @@ export class Subscription {
   #price
   #frequency
   #category
-  #isActive
+  #activeStatus
   #usageHours
 
   //Class constants
-  static WEEKS_PER_MONTH = 4.33
+  static WEEKS_PER_MONTH = 4.33 // Approximation: Average weeks per month
   static MONTHS_PER_YEAR = 12
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
@@ -31,7 +31,7 @@ export class Subscription {
     this.#price = price
     this.#frequency = frequency
     this.#category = category
-    this.#isActive = true
+    this.#activeStatus = true
     this.#usageHours = 0
   }
 
@@ -84,22 +84,23 @@ export class Subscription {
 
   //Status management methods
   deactivate() {
-    this.#isActive = false
+    this.#activeStatus = false
   }
 
   activate() {
-    this.#isActive = true
+    this.#activeStatus = true
   }
 
-  getActiveStatus() {
-    return this.#isActive
+  isActive() {
+    return this.#activeStatus
   }
 
   //Usage tracking methods
   addUsageHours(hours) {
-    if (hours > 0) {
-      this.#usageHours += hours
+    if (hours <= 0) {
+      throw new Error('Usage hours must be positive')
     }
+    this.#usageHours += hours
   }
 
   getUsageHours() {
