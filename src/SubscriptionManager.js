@@ -19,7 +19,7 @@ export class SubscriptionManager {
     }
 
     getActiveSubscriptions() {
-        return this.subscriptions.filter(sub => sub.getActiveStatus())
+        return this.subscriptions.filter(sub => sub.isActive())
     }
 
     findSubscriptionByName(name) {
