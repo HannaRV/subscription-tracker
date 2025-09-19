@@ -13,6 +13,8 @@ export class Subscription {
   #category
   #activeStatus
   #usageHours
+  #renewalDate
+
 
   //Class constants
   static WEEKS_PER_MONTH = 4.33 // Approximation: Average weeks per month
@@ -33,6 +35,7 @@ export class Subscription {
     this.#category = category
     this.#activeStatus = true
     this.#usageHours = 0
+    this.#renewalDate = null
   }
 
   //Private validation methods
@@ -55,6 +58,7 @@ export class Subscription {
   }
 
   //Public getter methods
+
   getName() {
     return this.#name
   }
@@ -71,16 +75,7 @@ export class Subscription {
     return this.#category
   }
 
-  //Price calculation methods
-  getMonthlyPrice() {
-    if (this.#frequency === 'weekly') {
-      return this.#price * Subscription.WEEKS_PER_MONTH
-    }
-    if (this.#frequency === 'yearly') {
-      return this.#price / Subscription.MONTHS_PER_YEAR
-    }
-    return this.#price
-  }
+
 
   //Status management methods
   deactivate() {
@@ -107,10 +102,15 @@ export class Subscription {
     return this.#usageHours
   }
 
-  getCostPerHour() {
-    if (this.#usageHours === 0) {
-      return null
+  //Renewal date methods
+  setRenewalDate(date) {
+    if (!date) {
+      throw new Error('Renewal date can not be empty')
     }
-    return this.getMonthlyPrice() / this.#usageHours
+    this.#renewalDate = new Date(date)
+  }
+
+  getRenewalDate() {
+    return this.#renewalDate
   }
 }

@@ -6,28 +6,46 @@
  */
 
 export class SubscriptionManager {
+    #subscriptions
+
     constructor() {
-        this.subscriptions = []
+        this.#subscriptions = []
     }
 
     addSubscription(subscription) {
-        this.subscriptions.push(subscription)
+        if (!subscription) {
+            throw new Error('Subscription cannot be null')
+        }
+        this.#subscriptions.push(subscription)
     }
 
-    getSubscriptions() {
-        return this.subscriptions
+    removeSubscription(subscription) {
+        const index = this.#subscriptions.indexOf(subscription)
+        if (index !== -1) {
+            this.#subscriptions.splice(index, 1)
+            return true
+        }
+        return false
+    }
+
+    getAllSubscriptions() {
+        return this.#subscriptions
     }
 
     getActiveSubscriptions() {
-        return this.subscriptions.filter(sub => sub.isActive())
+        return this.#subscriptions.filter(sub => sub.isActive())
+    }
+
+    getInactiveSubscriptions() {
+        return this.#subscriptions.filter(sub => !sub.isActive())
     }
 
     findSubscriptionByName(name) {
-        return this.subscriptions.find(subscription => subscription.getName() === name)
+        return this.#subscriptions.find(subscription => subscription.getName() === name)
     }
 
     getSubscriptionsByCategory(category) {
-        return this.subscriptions.filter(subscription => subscription.getCategory() === category)
+        return this.#subscriptions.filter(subscription => subscription.getCategory() === category)
     }
 
 }

@@ -6,21 +6,24 @@
  * @description Demonstrates and tests the functionality of the subscription tracker module.
  */
 
-import { Subscription, SubscriptionManager } from '../src/index.js'
+import { Subscription, SubscriptionManager, CostCalculator, UsageAnalyzer } from '../src/index.js'
 
-console.log ('=== Testing Subscription Class ===')
+console.log('=== Testing Subscription Class ===')
 
 //Test basic functionality
 const netflix = new Subscription('Netflix', 139, 'monthly', 'streaming')
-console.log(`${netflix.getName()} (${netflix.getCategory()}): ${netflix.getMonthlyPrice()} kr/month`)
+console.log(`Name: ${netflix.getName()}`)
+console.log(`Category: ${netflix.getCategory()}`)
+console.log(`Price: ${netflix.getPrice()} kr`)
+console.log(`Frequency: ${netflix.getFrequency()}`)
 
 //Test yearly conversion
 const spotify = new Subscription('Spotify', 1200, 'yearly', 'music')
-console.log(`${spotify.getName()} (${spotify.getCategory()}): ${spotify.getMonthlyPrice()} kr/month`)
+console.log(`${spotify.getName()}: ${spotify.getPrice()} kr per ${spotify.getFrequency()}`)
 
 //Test weekly conversion
 const sats = new Subscription('SATS', 150, 'weekly', 'fitness')
-console.log(`${sats.getName()} (${sats.getCategory()}): ${sats.getMonthlyPrice()} kr/month`)
+console.log(`${sats.getName()}: ${sats.getPrice()} kr per ${sats.getFrequency()}`)
 
 // Test active/inactive functionality
 console.log(`Netflix initial active status is: ${netflix.isActive()}`)
@@ -37,30 +40,48 @@ console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)
 netflix.addUsageHours(15)
 console.log(`Netflix after adding 15 hours: ${netflix.getUsageHours()} hours`)
 
-const costPerHour = netflix.getCostPerHour()
-if (costPerHour) {
-  console.log(`Netflix cost per hour: ${costPerHour.toFixed(2)} kr/hour`)
-} else {
-  console.log('Netflix cost per hour: No usage recorded')
-}
+// Test renewal date
+netflix.setRenewalDate('2025-01-15')
+console.log(`Netflix renewal date: ${netflix.getRenewalDate()}`)
 
-console.log ('=== Testing SubscriptionManager Class ===')
+console.log('=== Testing SubscriptionManager Class ===')
 
 //Test multiple subscriptions
 const manager = new SubscriptionManager()
 manager.addSubscription(netflix)
 manager.addSubscription(spotify)
+manager.addSubscription(sats)
 
-console.log(`Total subscriptions: ${manager.getSubscriptions().length}`)
+console.log(`Total subscriptions: ${manager.getAllSubscriptions().length}`)
 
 //Test find subscription by name
 const foundSubscription = manager.findSubscriptionByName('Netflix')
 if (foundSubscription) {
-    console.log(`Found: ${foundSubscription.getName()}`)
+  console.log(`Found: ${foundSubscription.getName()}`)
 } else {
-    console.log('Subscription not found')
+  console.log('Subscription not found')
 }
 
 //Test filtering subscriptions by category
 const streamingServices = manager.getSubscriptionsByCategory('streaming')
 console.log(`Streaming services: ${streamingServices.length}`)
+
+//Test active subscriptions
+console.log(`Active subscriptions: ${manager.getActiveSubscriptions().length}`)
+
+//Test removing subscriptions
+console.log(`Before removal: ${manager.getAllSubscriptions().length} subscriptions`)
+const removed = manager.removeSubscription(sats)
+console.log(`Removal successful: ${removed}`)
+console.log(`After removal: ${manager.getAllSubscriptions().length} subscriptions`)
+
+console.log('=== Testing CostCalculator Class ===')
+
+
+console.log('=== Testing UsageAnalyzer Class ===')
+
+
+console.log('=== Testing SubsrciptionOptimizer Class ===')
+
+
+console.log('=== Testing RenewalTracker Class ===')
