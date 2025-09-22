@@ -54,13 +54,17 @@ manager.addSubscription(sats)
 
 console.log(`Total subscriptions: ${manager.getAllSubscriptions().length}`)
 
-//Test find subscription by name
-const foundSubscription = manager.findSubscriptionByName('Netflix')
-if (foundSubscription) {
-  console.log(`Found: ${foundSubscription.getName()}`)
+//Test filter subscriptions by name
+const foundSubscriptions = manager.getSubscriptionsByName('Netflix')
+if (foundSubscriptions.length > 0) {
+  console.log(`Found: ${foundSubscriptions[0].getName()}`)
 } else {
   console.log('Subscription not found')
 }
+
+//Test partial name search and case-insensitivity
+const netflixSubscriptions = manager.getSubscriptionsByName('NET')
+console.log(`Subscriptions containing 'NET': ${netflixSubscriptions.length}`)
 
 //Test filtering subscriptions by category
 const streamingServices = manager.getSubscriptionsByCategory('streaming')

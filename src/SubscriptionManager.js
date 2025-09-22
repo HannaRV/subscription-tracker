@@ -1,6 +1,6 @@
 /**
  * @file SubscriptionManager class for managing multiple subscriptions.
- * @module src/SubscriptionManager
+ * @module src/SubscriptionManager.js
  * @author Hanna Rubio Vretby <hr222sy@student.lnu.se>
  * @version 1.0.0
  */
@@ -12,6 +12,7 @@ export class SubscriptionManager {
         this.#subscriptions = []
     }
 
+    // Collection management
     addSubscription(subscription) {
         if (!subscription) {
             throw new Error('Subscription cannot be null')
@@ -28,10 +29,12 @@ export class SubscriptionManager {
         return false
     }
 
+    // Retrieval - all
     getAllSubscriptions() {
-        return this.#subscriptions
+        return [...this.#subscriptions]
     }
 
+    // Retrieval - filtered 
     getActiveSubscriptions() {
         return this.#subscriptions.filter(sub => sub.isActive())
     }
@@ -40,12 +43,11 @@ export class SubscriptionManager {
         return this.#subscriptions.filter(sub => !sub.isActive())
     }
 
-    findSubscriptionByName(name) {
-        return this.#subscriptions.find(subscription => subscription.getName() === name)
-    }
-
     getSubscriptionsByCategory(category) {
         return this.#subscriptions.filter(subscription => subscription.getCategory() === category)
     }
 
+    searchSubscriptionsByName(name) {
+        return this.#subscriptions.filter(subscription => subscription.getName().toLowerCase().includes(name.toLowerCase()))
+    }
 }
