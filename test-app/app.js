@@ -69,15 +69,20 @@ const removed = manager.removeSubscription(sats)
 console.log(`Removal successful: ${removed}`)
 console.log(`After removal: ${manager.getAllSubscriptions().length} subscriptions`)
 
+
 console.log('=== Testing CostCalculator Class ===')
+//Test frequency conversions
+const costCalculator = new CostCalculator()
 
 // Test monthly price calculations
-const costCalculator = new CostCalculator()
 console.log(`Netflix monthly cost: ${costCalculator.calculateMonthlyPrice(netflix)} kr`)
 console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyPrice(spotify)} kr`) 
 console.log(`SATS monthly cost: ${costCalculator.calculateMonthlyPrice(sats)} kr`)
 
-
+// Test yearly price calculations
+console.log(`Netflix yearly cost: ${costCalculator.calculateYearlyPrice(netflix)} kr`)
+console.log(`Spotify yearly cost: ${costCalculator.calculateYearlyPrice(spotify)} kr`)
+console.log(`SATS yearly cost: ${costCalculator.calculateYearlyPrice(sats)} kr`)
 
 console.log('=== Testing UsageAnalyzer Class ===')
 

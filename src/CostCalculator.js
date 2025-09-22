@@ -29,4 +29,22 @@ export class CostCalculator {
         }
         return price
     }
+
+    calculateYearlyPrice(subscription) {
+        if (!subscription) {
+            throw new Error('Subscription cannot be null')
+        }
+
+        const frequency = subscription.getFrequency()
+        const price = subscription.getPrice()
+
+        if (frequency === 'weekly') {
+            return price * CostCalculator.WEEKS_PER_YEAR
+        }
+
+        if (frequency === 'monthly') {
+            return price * CostCalculator.MONTHS_PER_YEAR
+        }
+        return price
+    }
 }
