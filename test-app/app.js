@@ -84,6 +84,11 @@ console.log(`Netflix yearly cost: ${costCalculator.calculateYearlyPrice(netflix)
 console.log(`Spotify yearly cost: ${costCalculator.calculateYearlyPrice(spotify)} kr`)
 console.log(`SATS yearly cost: ${costCalculator.calculateYearlyPrice(sats)} kr`)
 
+// Test weekly price calculations
+console.log(`Netflix weekly cost: ${costCalculator.calculateWeeklyPrice(netflix)} kr`)
+console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyPrice(spotify)} kr`) 
+console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyPrice(sats)} kr`)
+
 console.log('=== Testing UsageAnalyzer Class ===')
 
 

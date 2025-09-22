@@ -6,6 +6,7 @@
  */
 
 export class SubscriptionManager {
+    //Private fields
     #subscriptions
 
     constructor() {
@@ -36,11 +37,11 @@ export class SubscriptionManager {
 
     // Retrieval - filtered 
     getActiveSubscriptions() {
-        return this.#subscriptions.filter(sub => sub.isActive())
+        return this.#subscriptions.filter(subscription => subscription.isActive())
     }
 
     getInactiveSubscriptions() {
-        return this.#subscriptions.filter(sub => !sub.isActive())
+        return this.#subscriptions.filter(subscription => !subscription.isActive())
     }
 
     getSubscriptionsByCategory(category) {

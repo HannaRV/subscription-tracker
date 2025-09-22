@@ -11,11 +11,16 @@ export class CostCalculator {
     static MONTHS_PER_YEAR = 12
     static WEEKS_PER_YEAR = 52
 
-    // Single subscription calculations
-    calculateMonthlyPrice(subscription) {
+    //Private validation method
+    #validateSubscription(subscription) {
         if (!subscription) {
             throw new Error('Subscription cannot be null')
         }
+    }
+
+    // Single subscription calculations
+    calculateMonthlyPrice(subscription) {
+        this.#validateSubscription(subscription)
 
         const frequency = subscription.getFrequency()
         const price = subscription.getPrice()
@@ -31,9 +36,7 @@ export class CostCalculator {
     }
 
     calculateYearlyPrice(subscription) {
-        if (!subscription) {
-            throw new Error('Subscription cannot be null')
-        }
+        this.#validateSubscription(subscription)
 
         const frequency = subscription.getFrequency()
         const price = subscription.getPrice()
@@ -44,6 +47,22 @@ export class CostCalculator {
 
         if (frequency === 'monthly') {
             return price * CostCalculator.MONTHS_PER_YEAR
+        }
+        return price
+    }
+
+    calculateWeeklyPrice(subscription) {
+        this.#validateSubscription(subscription)
+        
+        const frequency = subscription.getFrequency()
+        const price = subscription.getPrice()
+
+        if (frequency === 'monthly') {
+            return price / CostCalculator.WEEKS_PER_MONTH
+        }
+
+        if (frequency === 'yearly') {
+            return price / CostCalculator.WEEKS_PER_YEAR
         }
         return price
     }
