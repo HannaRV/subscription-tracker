@@ -7,18 +7,18 @@
 
 export class CostCalculator {
     //Class constants
-    static WEEKS_PER_MONTH = 4.33 // Approximation: Average weeks per month
+    static WEEKS_PER_MONTH = 4.33 // Approximation
     static MONTHS_PER_YEAR = 12
     static WEEKS_PER_YEAR = 52
 
-    //Private validation method
+    //Private validation method for individual subscriptions
     #validateSubscription(subscription) {
         if (!subscription) {
             throw new Error('Subscription cannot be null')
         }
     }
 
-    // Single subscription calculations
+    //Calculate cost for individual subscriptions
     calculateMonthlyCost(subscription) {
         this.#validateSubscription(subscription)
 
@@ -61,20 +61,21 @@ export class CostCalculator {
             return price / CostCalculator.WEEKS_PER_MONTH
         }
 
+        
         if (frequency === 'yearly') {
             return price / CostCalculator.WEEKS_PER_YEAR
         }
         return price
     }
 
-    //Private validation method for subscription arrays
+    //Private validation method for multiple subscriptions (array)
     #validateSubscriptionArray(subscriptions) {
         if (!Array.isArray(subscriptions)) {
             throw new Error('Subscriptions must be an array')
         }
     }
 
-    // Total subscriptions calculations
+    //Calculate total cost for multiple subscriptions
     calculateTotalMonthlyCost(subscriptions) {
         this.#validateSubscriptionArray(subscriptions)
 
@@ -95,8 +96,23 @@ export class CostCalculator {
         this.#validateSubscriptionArray(subscriptions)
 
         return subscriptions
-        .filter(subscription => subscription.isActive())
-        .reduce((total, subscription) => total + this.calculateWeeklyCost(subscription), 0)
+            .filter(subscription => subscription.isActive())
+            .reduce((total, subscription) => total + this.calculateWeeklyCost(subscription), 0)
     }
 
+    calculateCostByCategory(subscriptions) {
+        this.#validateSubscriptionArray(subscriptions)
+        const cost = {}
+        for (let subscription of subscriptions) {
+            if (subscription.isActive()) {
+                const category = subscription.getCategory()
+                if (!cost[category]) {
+                    cost[category] = 0
+                }
+                cost[category] += this.calculateMonthlyCost(subscription)
+            }
+        }
+        return cost
+    }
+// SE ÖVER PRICE/COST, DRY SAMT LÄGG TILL TEST
 }
