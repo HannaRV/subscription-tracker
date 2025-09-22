@@ -19,7 +19,7 @@ export class CostCalculator {
     }
 
     // Single subscription calculations
-    calculateMonthlyPrice(subscription) {
+    calculateMonthlyCost(subscription) {
         this.#validateSubscription(subscription)
 
         const frequency = subscription.getFrequency()
@@ -35,7 +35,7 @@ export class CostCalculator {
         return price
     }
 
-    calculateYearlyPrice(subscription) {
+    calculateYearlyCost(subscription) {
         this.#validateSubscription(subscription)
 
         const frequency = subscription.getFrequency()
@@ -51,9 +51,9 @@ export class CostCalculator {
         return price
     }
 
-    calculateWeeklyPrice(subscription) {
+    calculateWeeklyCost(subscription) {
         this.#validateSubscription(subscription)
-        
+
         const frequency = subscription.getFrequency()
         const price = subscription.getPrice()
 
@@ -66,4 +66,37 @@ export class CostCalculator {
         }
         return price
     }
+
+    //Private validation method for subscription arrays
+    #validateSubscriptionArray(subscriptions) {
+        if (!Array.isArray(subscriptions)) {
+            throw new Error('Subscriptions must be an array')
+        }
+    }
+
+    // Total subscriptions calculations
+    calculateTotalMonthlyCost(subscriptions) {
+        this.#validateSubscriptionArray(subscriptions)
+
+        return subscriptions
+            .filter(subscription => subscription.isActive())
+            .reduce((total, subscription) => total + this.calculateMonthlyCost(subscription), 0)
+    }
+
+    calculateTotalYearlyCost(subscriptions) {
+        this.#validateSubscriptionArray(subscriptions)
+
+        return subscriptions
+            .filter(subscription => subscription.isActive())
+            .reduce((total, subscription) => total + this.calculateYearlyCost(subscription), 0)
+    }
+
+    calculateTotalWeeklyCost(subscriptions) {
+        this.#validateSubscriptionArray(subscriptions)
+
+        return subscriptions
+        .filter(subscription => subscription.isActive())
+        .reduce((total, subscription) => total + this.calculateWeeklyCost(subscription), 0)
+    }
+
 }

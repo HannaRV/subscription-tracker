@@ -40,6 +40,8 @@ console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)
 netflix.addUsageHours(15)
 console.log(`Netflix after adding 15 hours: ${netflix.getUsageHours()} hours`)
 
+console.log('=== Testing SubscriptionManager Class ===')
+
 //Test multiple subscriptions
 const manager = new SubscriptionManager()
 manager.addSubscription(netflix)
@@ -74,20 +76,34 @@ console.log('=== Testing CostCalculator Class ===')
 //Test frequency conversions
 const costCalculator = new CostCalculator()
 
-// Test monthly price calculations
-console.log(`Netflix monthly cost: ${costCalculator.calculateMonthlyPrice(netflix)} kr`)
-console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyPrice(spotify)} kr`) 
-console.log(`SATS monthly cost: ${costCalculator.calculateMonthlyPrice(sats)} kr`)
+// Re-add SATS for total cost calculations
+manager.addSubscription(sats)
 
-// Test yearly price calculations
-console.log(`Netflix yearly cost: ${costCalculator.calculateYearlyPrice(netflix)} kr`)
-console.log(`Spotify yearly cost: ${costCalculator.calculateYearlyPrice(spotify)} kr`)
-console.log(`SATS yearly cost: ${costCalculator.calculateYearlyPrice(sats)} kr`)
+// Test monthly cost calculations
+console.log(`Netflix monthly cost: ${costCalculator.calculateMonthlyCost(netflix)} kr`)
+console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyCost(spotify)} kr`) 
+console.log(`SATS monthly cost: ${costCalculator.calculateMonthlyCost(sats)} kr`)
 
-// Test weekly price calculations
-console.log(`Netflix weekly cost: ${costCalculator.calculateWeeklyPrice(netflix)} kr`)
-console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyPrice(spotify)} kr`) 
-console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyPrice(sats)} kr`)
+// Test yearly cost calculations
+console.log(`Netflix yearly cost: ${costCalculator.calculateYearlyCost(netflix)} kr`)
+console.log(`Spotify yearly cost: ${costCalculator.calculateYearlyCost(spotify)} kr`)
+console.log(`SATS yearly cost: ${costCalculator.calculateYearlyCost(sats)} kr`)
+
+// Test weekly cost calculations
+console.log(`Netflix weekly cost: ${costCalculator.calculateWeeklyCost(netflix)} kr`)
+console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyCost(spotify)} kr`) 
+console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyCost(sats)} kr`)
+
+// Test total cost calculations
+
+const totalMonthlyCost = costCalculator.calculateTotalMonthlyCost(manager.getAllSubscriptions())
+console.log(`Total monthly cost for all subscriptions: ${totalMonthlyCost} kr`)
+
+const totalYearlyCost = costCalculator.calculateTotalYearlyCost(manager.getAllSubscriptions())
+console.log(`Total yearly cost for all subscriptions: ${totalYearlyCost} kr`)
+
+const totalWeeklyCost = costCalculator.calculateTotalWeeklyCost(manager.getAllSubscriptions())
+console.log(`Total weekly cost for all subscriptions: ${totalWeeklyCost} kr`)
 
 console.log('=== Testing UsageAnalyzer Class ===')
 
