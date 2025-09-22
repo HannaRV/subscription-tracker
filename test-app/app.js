@@ -17,11 +17,11 @@ console.log(`Category: ${netflix.getCategory()}`)
 console.log(`Price: ${netflix.getPrice()} kr`)
 console.log(`Frequency: ${netflix.getFrequency()}`)
 
-//Test yearly conversion
+//Test create yearly subscription
 const spotify = new Subscription('Spotify', 1200, 'yearly', 'music')
 console.log(`${spotify.getName()}: ${spotify.getPrice()} kr per ${spotify.getFrequency()}`)
 
-//Test weekly conversion
+//Test create weekly subscription
 const sats = new Subscription('SATS', 150, 'weekly', 'fitness')
 console.log(`${sats.getName()}: ${sats.getPrice()} kr per ${sats.getFrequency()}`)
 
@@ -48,17 +48,13 @@ manager.addSubscription(sats)
 
 console.log(`Total subscriptions: ${manager.getAllSubscriptions().length}`)
 
-//Test search subscriptions by name
-const searchSubscriptions = manager.searchSubscriptionsByName('Netflix')
+//Test search subscriptions by name (partial, case-insensitive)
+const searchSubscriptions = manager.searchSubscriptionsByName('netfl')
 if (searchSubscriptions.length > 0) {
   console.log(`Found: ${searchSubscriptions[0].getName()}`)
 } else {
   console.log('Subscription not found')
 }
-
-//Test partial name search and case-insensitivity
-const netflixSubscriptions = manager.searchSubscriptionsByName('NET')
-console.log(`Subscriptions containing 'NET': ${netflixSubscriptions.length}`)
 
 //Test filtering subscriptions by category
 const streamingServices = manager.getSubscriptionsByCategory('streaming')
@@ -74,6 +70,13 @@ console.log(`Removal successful: ${removed}`)
 console.log(`After removal: ${manager.getAllSubscriptions().length} subscriptions`)
 
 console.log('=== Testing CostCalculator Class ===')
+
+// Test monthly price calculations
+const costCalculator = new CostCalculator()
+console.log(`Netflix monthly cost: ${costCalculator.calculateMonthlyPrice(netflix)} kr`)
+console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyPrice(spotify)} kr`) 
+console.log(`SATS monthly cost: ${costCalculator.calculateMonthlyPrice(sats)} kr`)
+
 
 
 console.log('=== Testing UsageAnalyzer Class ===')
