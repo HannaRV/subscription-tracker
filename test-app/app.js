@@ -40,12 +40,6 @@ console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)
 netflix.addUsageHours(15)
 console.log(`Netflix after adding 15 hours: ${netflix.getUsageHours()} hours`)
 
-// Test renewal date
-netflix.setRenewalDate('2025-01-15')
-console.log(`Netflix renewal date: ${netflix.getRenewalDate()}`)
-
-console.log('=== Testing SubscriptionManager Class ===')
-
 //Test multiple subscriptions
 const manager = new SubscriptionManager()
 manager.addSubscription(netflix)
@@ -54,16 +48,16 @@ manager.addSubscription(sats)
 
 console.log(`Total subscriptions: ${manager.getAllSubscriptions().length}`)
 
-//Test filter subscriptions by name
-const foundSubscriptions = manager.getSubscriptionsByName('Netflix')
-if (foundSubscriptions.length > 0) {
-  console.log(`Found: ${foundSubscriptions[0].getName()}`)
+//Test search subscriptions by name
+const searchSubscriptions = manager.searchSubscriptionsByName('Netflix')
+if (searchSubscriptions.length > 0) {
+  console.log(`Found: ${searchSubscriptions[0].getName()}`)
 } else {
   console.log('Subscription not found')
 }
 
 //Test partial name search and case-insensitivity
-const netflixSubscriptions = manager.getSubscriptionsByName('NET')
+const netflixSubscriptions = manager.searchSubscriptionsByName('NET')
 console.log(`Subscriptions containing 'NET': ${netflixSubscriptions.length}`)
 
 //Test filtering subscriptions by category
@@ -85,7 +79,4 @@ console.log('=== Testing CostCalculator Class ===')
 console.log('=== Testing UsageAnalyzer Class ===')
 
 
-console.log('=== Testing SubsrciptionOptimizer Class ===')
-
-
-console.log('=== Testing RenewalTracker Class ===')
+console.log('=== Testing SubscriptionOptimizer Class ===')

@@ -16,8 +16,6 @@ export class Subscription {
 
 
   //Class constants
-  static WEEKS_PER_MONTH = 4.33 // Approximation: Average weeks per month
-  static MONTHS_PER_YEAR = 12
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
   constructor(name, price, frequency, category = 'other') {

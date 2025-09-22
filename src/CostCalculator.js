@@ -6,5 +6,9 @@
  */
 
 export class CostCalculator {
-    
+
+
+    //Class constants
+    static WEEKS_PER_MONTH = 4.33 // Approximation: Average weeks per month
+    static MONTHS_PER_YEAR = 12
 }
