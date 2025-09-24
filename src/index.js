@@ -9,6 +9,5 @@ export {Subscription} from './Subscription.js'
 export {SubscriptionManager} from './SubscriptionManager.js'
 export {CostCalculator} from './CostCalculator.js'
 export {UsageAnalyzer} from './UsageAnalyzer.js'
-export {SubscriptionOptimizer} from './SubscriptionOptimizer.js'
 
 

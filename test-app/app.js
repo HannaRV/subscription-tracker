@@ -79,6 +79,16 @@ const costCalculator = new CostCalculator()
 // Re-add SATS for total cost calculations
 manager.addSubscription(sats)
 
+// Test hourly cost calculations
+console.log(`Netflix hourly cost: ${costCalculator.calculateHourlyCost(netflix)} kr`)
+console.log(`Spotify hourly cost: ${costCalculator.calculateHourlyCost(spotify)} kr`)
+console.log(`SATS hourly cost: ${costCalculator.calculateHourlyCost(sats)} kr`)
+
+// Test weekly cost calculations
+console.log(`Netflix weekly cost: ${costCalculator.calculateWeeklyCost(netflix)} kr`)
+console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyCost(spotify)} kr`) 
+console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyCost(sats)} kr`)
+
 // Test monthly cost calculations
 console.log(`Netflix monthly cost: ${costCalculator.calculateMonthlyCost(netflix)} kr`)
 console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyCost(spotify)} kr`) 
@@ -89,12 +99,9 @@ console.log(`Netflix yearly cost: ${costCalculator.calculateYearlyCost(netflix)}
 console.log(`Spotify yearly cost: ${costCalculator.calculateYearlyCost(spotify)} kr`)
 console.log(`SATS yearly cost: ${costCalculator.calculateYearlyCost(sats)} kr`)
 
-// Test weekly cost calculations
-console.log(`Netflix weekly cost: ${costCalculator.calculateWeeklyCost(netflix)} kr`)
-console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyCost(spotify)} kr`) 
-console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyCost(sats)} kr`)
-
 // Test total cost calculations
+const totalWeeklyCost = costCalculator.calculateTotalWeeklyCost(manager.getAllSubscriptions())
+console.log(`Total weekly cost for all subscriptions: ${totalWeeklyCost} kr`)
 
 const totalMonthlyCost = costCalculator.calculateTotalMonthlyCost(manager.getAllSubscriptions())
 console.log(`Total monthly cost for all subscriptions: ${totalMonthlyCost} kr`)
@@ -102,10 +109,28 @@ console.log(`Total monthly cost for all subscriptions: ${totalMonthlyCost} kr`)
 const totalYearlyCost = costCalculator.calculateTotalYearlyCost(manager.getAllSubscriptions())
 console.log(`Total yearly cost for all subscriptions: ${totalYearlyCost} kr`)
 
-const totalWeeklyCost = costCalculator.calculateTotalWeeklyCost(manager.getAllSubscriptions())
-console.log(`Total weekly cost for all subscriptions: ${totalWeeklyCost} kr`)
+// Test cost by category
+const hboMax = new Subscription('HBO Max', 109, 'monthly', 'streaming')
+const appleTv = new Subscription('Apple TV+', 59, 'monthly', 'streaming')
+const appleMusic = new Subscription('Apple Music', 109, 'monthly', 'music')
+const yogaPass = new Subscription('Yoga Pass', 200, 'weekly', 'fitness')
+
+manager.addSubscription(hboMax)
+manager.addSubscription(appleTv)
+manager.addSubscription(appleMusic)
+manager.addSubscription(yogaPass) // Add more subscriptions for category testing
+
+const categoryTotals = costCalculator.calculateCostByCategory(manager.getAllSubscriptions())
+console.log('Category cost breakdown:')
+console.log(categoryTotals)
+
+console.log(`Streaming costs (Netflix + HBO + Apple TV): ${categoryTotals.streaming || 0} kr/month`)
+console.log(`Music costs (Spotify + Apple Music): ${categoryTotals.music || 0} kr/month`)  
+console.log(`Fitness costs (SATS + Yoga): ${categoryTotals.fitness || 0} kr/month`)
+
+appleMusic.deactivate()
+console.log('After deactivating Apple Music:')
+const updatedTotals = costCalculator.calculateCostByCategory(manager.getAllSubscriptions())
+console.log(`Music costs after deactivation: ${updatedTotals.music || 0} kr/month`)
 
 console.log('=== Testing UsageAnalyzer Class ===')
-
-
-console.log('=== Testing SubscriptionOptimizer Class ===')

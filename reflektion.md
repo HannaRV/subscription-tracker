@@ -2,3 +2,9 @@ Metoden getMonthlyPrice() kan tyckas bryta mot 'Do One Thing' eftersom den inneh
 
 cost/price
 
+DRY/tydlighet
+
+tests
+
+calculateCosByCategory endast måndasberäkning
+
