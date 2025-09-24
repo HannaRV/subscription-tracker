@@ -72,7 +72,6 @@ export class Subscription {
   }
 
 
-
   //Status management methods
   deactivate() {
     this.#activeStatus = false
@@ -97,5 +96,4 @@ export class Subscription {
   getUsageHours() {
     return this.#usageHours
   }
-
 }

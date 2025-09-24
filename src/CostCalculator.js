@@ -139,5 +139,4 @@ export class CostCalculator {
         }
         return cost
     }
-
 }

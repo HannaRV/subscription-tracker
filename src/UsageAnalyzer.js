@@ -6,5 +6,13 @@
  */
 
 export class UsageAnalyzer {
-    
+
+    analyzeCostPerHour(subscription, costCalculator) {
+        if (subscription.getUsageHours() === 0) {
+            throw new Error('Cannot analyze cost per hour: no usage recorded.')
+        }
+
+        const monthlyCost = costCalculator.calculateMonthlyCost(subscription)
+        return monthlyCost / subscription.getUsageHours()
+    }
 }
