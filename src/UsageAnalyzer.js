@@ -14,4 +14,26 @@ export class UsageAnalyzer {
 
         return costCalculator.calculateMonthlyCost(subscription) / subscription.getUsageHours()
     }
+
+    // Find subscriptions with poor usage efficiency
+    findUnderutilizedSubscriptions(subscriptions, costCalculator, maxCostPerHour) {
+        if (maxCostPerHour <= 0) {
+            throw new Error('Maximum cost per hour must be positive')
+        }
+
+        const underutilized = []
+
+        for (const subscription of subscriptions) {
+            if (subscription.isActive() && subscription.getUsageHours() > 0) {
+                const costPerHour = this.analyzeCostPerHour(subscription, costCalculator)
+                if (costPerHour > maxCostPerHour) {
+                    underutilized.push({
+                        subscription: subscription,
+                        costPerHour: costPerHour
+                    })
+                }
+            }
+        }
+        return underutilized
+    }
 }
