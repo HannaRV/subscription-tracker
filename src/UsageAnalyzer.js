@@ -12,7 +12,6 @@ export class UsageAnalyzer {
             throw new Error('Cannot analyze cost per hour: no usage recorded.')
         }
 
-        const monthlyCost = costCalculator.calculateMonthlyCost(subscription)
-        return monthlyCost / subscription.getUsageHours()
+        return costCalculator.calculateMonthlyCost(subscription) / subscription.getUsageHours()
     }
 }

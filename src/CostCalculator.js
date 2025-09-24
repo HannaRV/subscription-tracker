@@ -127,16 +127,18 @@ export class CostCalculator {
 
     calculateCostByCategory(subscriptions) {
         this.#validateSubscriptionArray(subscriptions)
-        const cost = {}
-        for (let subscription of subscriptions) {
-            if (subscription.isActive()) {
-                const category = subscription.getCategory()
-                if (!cost[category]) {
-                    cost[category] = 0
-                }
-                cost[category] += this.calculateMonthlyCost(subscription)
-            }
-        }
-        return cost
+        return this.#groupCostsByCategory(this.#filterActiveSubscriptions(subscriptions))
+    }
+
+    #filterActiveSubscriptions(subscriptions) {
+        return subscriptions.filter(subscription => subscription.isActive())
+    }
+
+    #groupCostsByCategory(activeSubscriptions) {
+        return activeSubscriptions.reduce((categoryTotals, subscription) => {
+            const category = subscription.getCategory()
+            categoryTotals[category] = (categoryTotals[category] || 0) + this.calculateMonthlyCost(subscription)
+            return categoryTotals
+        }, {})
     }
 }
