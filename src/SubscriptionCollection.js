@@ -1,11 +1,11 @@
 /**
- * @file SubscriptionManager class for managing multiple subscriptions.
- * @module src/SubscriptionManager.js
+ * @file SubscriptionCollection class for managing collections of subscriptions.
+ * @module src/SubscriptionCollection.js
  * @author Hanna Rubio Vretby <hr222sy@student.lnu.se>
  * @version 1.0.0
  */
 
-export class SubscriptionManager {
+export class SubscriptionCollection {
     //Private fields
     #subscriptions
 

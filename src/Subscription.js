@@ -14,7 +14,6 @@ export class Subscription {
   #activeStatus
   #usageHours
 
-
   //Class constants
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
@@ -70,7 +69,6 @@ export class Subscription {
   getCategory() {
     return this.#category
   }
-
 
   //Status management methods
   deactivate() {

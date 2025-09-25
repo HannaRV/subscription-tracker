@@ -6,7 +6,7 @@
  * @description Demonstrates and tests the functionality of the subscription tracker module.
  */
 
-import { Subscription, SubscriptionManager, CostCalculator, UsageAnalyzer } from '../src/index.js'
+import { Subscription, SubscriptionCollection, CostCalculator, UsageAnalyzer } from '../src/index.js'
 
 console.log('=== Testing Subscription Class ===')
 
@@ -40,18 +40,18 @@ console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)
 netflix.addUsageHours(15)
 console.log(`Netflix after adding 15 hours: ${netflix.getUsageHours()} hours`)
 
-console.log('=== Testing SubscriptionManager Class ===')
+console.log('=== Testing SubscriptionCollection Class ===')
 
 //Test multiple subscriptions
-const manager = new SubscriptionManager()
-manager.addSubscription(netflix)
-manager.addSubscription(spotify)
-manager.addSubscription(sats)
+const collection = new SubscriptionCollection()
+collection.addSubscription(netflix)
+collection.addSubscription(spotify)
+collection.addSubscription(sats)
 
-console.log(`Total subscriptions: ${manager.getAllSubscriptions().length}`)
+console.log(`Total subscriptions: ${collection.getAllSubscriptions().length}`)
 
 //Test search subscriptions by name (partial, case-insensitive)
-const searchSubscriptions = manager.searchSubscriptionsByName('netfl')
+const searchSubscriptions = collection.searchSubscriptionsByName('netfl')
 if (searchSubscriptions.length > 0) {
   console.log(`Found: ${searchSubscriptions[0].getName()}`)
 } else {
@@ -59,17 +59,17 @@ if (searchSubscriptions.length > 0) {
 }
 
 //Test filtering subscriptions by category
-const streamingServices = manager.getSubscriptionsByCategory('streaming')
+const streamingServices = collection.getSubscriptionsByCategory('streaming')
 console.log(`Streaming services: ${streamingServices.length}`)
 
 //Test active subscriptions
-console.log(`Active subscriptions: ${manager.getActiveSubscriptions().length}`)
+console.log(`Active subscriptions: ${collection.getActiveSubscriptions().length}`)
 
 //Test removing subscriptions
-console.log(`Before removal: ${manager.getAllSubscriptions().length} subscriptions`)
-const removed = manager.removeSubscription(sats)
+console.log(`Before removal: ${collection.getAllSubscriptions().length} subscriptions`)
+const removed = collection.removeSubscription(sats)
 console.log(`Removal successful: ${removed}`)
-console.log(`After removal: ${manager.getAllSubscriptions().length} subscriptions`)
+console.log(`After removal: ${collection.getAllSubscriptions().length} subscriptions`)
 
 
 console.log('=== Testing CostCalculator Class ===')
@@ -77,7 +77,7 @@ console.log('=== Testing CostCalculator Class ===')
 const costCalculator = new CostCalculator()
 
 // Re-add SATS for total cost calculations
-manager.addSubscription(sats)
+collection.addSubscription(sats)
 
 // Test hourly cost calculations
 console.log(`Netflix hourly cost: ${costCalculator.calculateHourlyCost(netflix)} kr`)
@@ -100,13 +100,13 @@ console.log(`Spotify yearly cost: ${costCalculator.calculateYearlyCost(spotify)}
 console.log(`SATS yearly cost: ${costCalculator.calculateYearlyCost(sats)} kr`)
 
 // Test total cost calculations
-const totalWeeklyCost = costCalculator.calculateTotalWeeklyCost(manager.getAllSubscriptions())
+const totalWeeklyCost = costCalculator.calculateTotalWeeklyCost(collection.getAllSubscriptions())
 console.log(`Total weekly cost for all subscriptions: ${totalWeeklyCost} kr`)
 
-const totalMonthlyCost = costCalculator.calculateTotalMonthlyCost(manager.getAllSubscriptions())
+const totalMonthlyCost = costCalculator.calculateTotalMonthlyCost(collection.getAllSubscriptions())
 console.log(`Total monthly cost for all subscriptions: ${totalMonthlyCost} kr`)
 
-const totalYearlyCost = costCalculator.calculateTotalYearlyCost(manager.getAllSubscriptions())
+const totalYearlyCost = costCalculator.calculateTotalYearlyCost(collection.getAllSubscriptions())
 console.log(`Total yearly cost for all subscriptions: ${totalYearlyCost} kr`)
 
 // Test cost by category
@@ -115,12 +115,12 @@ const appleTv = new Subscription('Apple TV+', 59, 'monthly', 'streaming')
 const appleMusic = new Subscription('Apple Music', 109, 'monthly', 'music')
 const yogaPass = new Subscription('Yoga Pass', 200, 'weekly', 'fitness')
 
-manager.addSubscription(hboMax)
-manager.addSubscription(appleTv)
-manager.addSubscription(appleMusic)
-manager.addSubscription(yogaPass) // Add more subscriptions for category testing
+collection.addSubscription(hboMax)
+collection.addSubscription(appleTv)
+collection.addSubscription(appleMusic)
+collection.addSubscription(yogaPass) // Add more subscriptions for category testing
 
-const categoryTotals = costCalculator.calculateCostByCategory(manager.getAllSubscriptions())
+const categoryTotals = costCalculator.calculateCostByCategory(collection.getAllSubscriptions())
 console.log('Category cost breakdown:')
 console.log(categoryTotals)
 
@@ -130,7 +130,7 @@ console.log(`Fitness costs (SATS + Yoga): ${categoryTotals.fitness || 0} kr/mont
 
 appleMusic.deactivate()
 console.log('After deactivating Apple Music:')
-const updatedTotals = costCalculator.calculateCostByCategory(manager.getAllSubscriptions())
+const updatedTotals = costCalculator.calculateCostByCategory(collection.getAllSubscriptions())
 console.log(`Music costs after deactivation: ${updatedTotals.music || 0} kr/month`)
 
 console.log('=== Testing UsageAnalyzer Class ===')

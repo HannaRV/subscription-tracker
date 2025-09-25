@@ -12,10 +12,10 @@ git clone https://github.com/username/subscription-tracker
 ## Quick Start
 
 ```javascript
-import { Subscription, SubscriptionManager } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection } from 'subscription-tracker'
 
 const netflix = new Subscription("Netflix", 139, "monthly", "streaming")
-const manager = new SubscriptionManager()
+const manager = new SubscriptionCollection()
 manager.addSubscription(netflix)
 ```
 
@@ -75,14 +75,14 @@ subscription.getUsageHours()       // Returns total usage hours
 ## Example Usage
 
 ```javascript
-import { Subscription, SubscriptionManager } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection } from 'subscription-tracker'
 
 // Create subscriptions
 const netflix = new Subscription("Netflix", 139, "monthly", "streaming")
 const spotify = new Subscription("Spotify", 1200, "yearly", "music")
 
 // Manage collection
-const manager = new SubscriptionManager()
+const manager = new SubscriptionCollection()
 manager.addSubscription(netflix)
 manager.addSubscription(spotify)
 
@@ -95,14 +95,14 @@ netflix.deactivate();
 console.log(netflix.isActive()); // false
 ```
 
-### SubscriptionManager Class
+### SubscriptionCollection Class
 
 Manage collections of subscriptions.
 
 #### Constructor
 
 ```javascript
-new SubscriptionManager()
+new SubscriptionCollection()
 ```
 
 #### Methods
