@@ -10,7 +10,7 @@
  * Line 107:  testCostCalculator() - Cost calculations and conversions between frequencies
  * Line 168: testUsageAnalyzer() - Usage efficiency analysis and finding unused subscriptions
  * Line 223: testErrorHandling() - Input validation and error conditions
- * Line 276: Main execution - Comment out functions to run selective tests
+ * Line 301: Main execution - Comment out functions to run selective tests
  * 
  * Usage: Ctrl+G (VS Code/most editors) to jump to line number
  * To run selective tests: Comment out unwanted function calls at bottom of file
@@ -32,7 +32,7 @@ function setupTestData() {
 
 function testSubscriptionClass() {
     console.log('=== Testing Subscription Class ===')
-    
+
     //Test basic functionality
     console.log(`Name: ${netflix.getName()}`)
     console.log(`Category: ${netflix.getCategory()}`)
@@ -94,7 +94,7 @@ function testSubscriptionCollection() {
     const inactiveSubscriptions = collection.getInactiveSubscriptions()
     console.log(`Inactive subscriptions: ${inactiveSubscriptions.length}`)
     console.log(`Inactive subscription name: ${inactiveSubscriptions.length > 0 ? inactiveSubscriptions[0].getName() : 'None'}`)
-    
+
     // Reactivate for other tests
     spotify.activate()
 
@@ -107,7 +107,7 @@ function testSubscriptionCollection() {
 
 function testCostCalculator() {
     console.log('=== Testing CostCalculator Class ===')
-    
+
     // Re-add SATS for total cost calculations
     collection.addSubscription(sats)
 
@@ -118,12 +118,12 @@ function testCostCalculator() {
 
     // Test weekly cost calculations
     console.log(`Netflix weekly cost: ${costCalculator.calculateWeeklyCost(netflix)} kr`)
-    console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyCost(spotify)} kr`) 
+    console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyCost(spotify)} kr`)
     console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyCost(sats)} kr`)
 
     // Test monthly cost calculations
     console.log(`Netflix monthly cost: ${costCalculator.calculateMonthlyCost(netflix)} kr`)
-    console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyCost(spotify)} kr`) 
+    console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyCost(spotify)} kr`)
     console.log(`SATS monthly cost: ${costCalculator.calculateMonthlyCost(sats)} kr`)
 
     // Test yearly cost calculations
@@ -157,7 +157,7 @@ function testCostCalculator() {
     console.log(categoryTotals)
 
     console.log(`Streaming costs (Netflix + HBO + Apple TV): ${categoryTotals.streaming || 0} kr/month`)
-    console.log(`Music costs (Spotify + Apple Music): ${categoryTotals.music || 0} kr/month`)  
+    console.log(`Music costs (Spotify + Apple Music): ${categoryTotals.music || 0} kr/month`)
     console.log(`Fitness costs (SATS + Yoga): ${categoryTotals.fitness || 0} kr/month`)
 
     appleMusic.deactivate()
@@ -172,7 +172,7 @@ function testUsageAnalyzer() {
     // Add usage data to existing subscriptions for testing
     spotify.addUsageHours(20)  // 20 hours of Spotify usage
     sats.addUsageHours(8)      // 8 hours of gym usage  
-    
+
     // Find HBO Max from collection for usage test
     const hboMax = collection.getAllSubscriptions().find(sub => sub.getName() === 'HBO Max')
     if (hboMax) {
@@ -181,7 +181,7 @@ function testUsageAnalyzer() {
 
     console.log('--- Testing analyzeCostPerHour ---')
     console.log(`Spotify cost per hour: ${analyzer.analyzeCostPerHour(spotify, costCalculator).toFixed(2)} kr/hour`)
-    console.log(`SATS cost per hour: ${analyzer.analyzeCostPerHour(sats, costCalculator).toFixed(2)} kr/hour`) 
+    console.log(`SATS cost per hour: ${analyzer.analyzeCostPerHour(sats, costCalculator).toFixed(2)} kr/hour`)
     if (hboMax) {
         console.log(`HBO Max cost per hour: ${analyzer.analyzeCostPerHour(hboMax, costCalculator).toFixed(2)} kr/hour`)
     }
@@ -189,8 +189,8 @@ function testUsageAnalyzer() {
     console.log('--- Testing findUnderutilizedSubscriptions ---')
     const maxCostPerHour = 15 // 15 kr per hour limit
     const underutilized = analyzer.findUnderutilizedSubscriptions(
-        collection.getAllSubscriptions(), 
-        costCalculator, 
+        collection.getAllSubscriptions(),
+        costCalculator,
         maxCostPerHour
     )
 
@@ -200,11 +200,11 @@ function testUsageAnalyzer() {
     })
 
     console.log('--- Testing findUnusedSubscriptions ---')
-    
+
     // Create some subscriptions without usage
     const disneyPlus = new Subscription('Disney+', 89, 'monthly', 'streaming')
     const audible = new Subscription('Audible', 149, 'monthly', 'books')
-    
+
     collection.addSubscription(disneyPlus)
     collection.addSubscription(audible)
 
@@ -302,7 +302,7 @@ function testErrorHandling() {
 setupTestData()
 
 testSubscriptionClass()
-console.log('\n') // Add spacing between test sections
+console.log('\n')
 
 testSubscriptionCollection()
 console.log('\n')
