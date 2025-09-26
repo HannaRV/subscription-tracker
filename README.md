@@ -2,6 +2,21 @@
 
 A JavaScript module for managing and analyzing personal subscriptions.
 
+## Table of Contents
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [API Reference](#api-reference)
+  - [Subscription Class](#subscription-class)
+  - [SubscriptionCollection Class](#subscriptioncollection-class)
+  - [CostCalculator Class](#costcalculator-class)
+  - [UsageAnalyzer Class](#usageanalyzer-class)
+- [Example Usage](#example-usage)
+- [Requirements](#requirements)
+- [License](#license)
+- [Contributing](#contributing)
+- [Author](#author)
+
 ## Installation
 
 ```bash
@@ -10,26 +25,35 @@ git clone https://github.com/username/subscription-tracker
 ```
 
 ## Quick Start
-
 ```javascript
-import { Subscription, SubscriptionCollection } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection, CostCalculator, UsageAnalyzer } from 'subscription-tracker'
 
 const netflix = new Subscription("Netflix", 139, "monthly", "streaming")
-const manager = new SubscriptionCollection()
-manager.addSubscription(netflix)
+const collection = new SubscriptionCollection()
+collection.addSubscription(netflix)
+
+// Calculate costs
+const calculator = new CostCalculator()
+const yearlyCost = calculator.calculateYearlyCost(netflix)
+console.log(`Netflix yearly cost: ${yearlyCost} kr`)
+
+// Track usage and analyze efficiency
+netflix.addUsageHours(25)
+const analyzer = new UsageAnalyzer()
+const costPerHour = analyzer.analyzeCostPerHour(netflix, calculator)
+console.log(`Netflix cost per hour: ${costPerHour.toFixed(2)} kr`)
 ```
 
 ## Features
 
-- Subscription data management with validation
-- Frequency conversion (weekly/monthly/yearly) (via Cost Calculator, coming soon)
-- Category support
-- Active/inactive status tracking
-- Usage tracking
-- Subscription collection management
-- Cost analysis and reporting (coming soon)
-- Usage efficiency analysis (via UsageAnalyzer, coming soon)
-- Subscription optimization recommendations (via SubscriptionOptimizer, coming soon)
+- ✅ Create and manage subscription data with validation
+- ✅ Convert costs between weekly/monthly/yearly frequencies  
+- ✅ Organize subscriptions in collections
+- ✅ Track active/inactive status and usage hours
+- ✅ Calculate individual and total costs
+- ✅ Group costs by category
+- ✅ Basic usage efficiency analysis (cost per hour)
+- ✅ Identify subscriptions above specified cost-per-hour limit
 
 ## API Reference
 
@@ -73,26 +97,41 @@ subscription.getUsageHours()       // Returns total usage hours
 ```
 
 ## Example Usage
-
 ```javascript
-import { Subscription, SubscriptionCollection } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection, CostCalculator, UsageAnalyzer } from 'subscription-tracker'
 
 // Create subscriptions
 const netflix = new Subscription("Netflix", 139, "monthly", "streaming")
 const spotify = new Subscription("Spotify", 1200, "yearly", "music")
+const gym = new Subscription("SATS", 150, "weekly", "fitness")
 
-// Manage collection
-const manager = new SubscriptionCollection()
-manager.addSubscription(netflix)
-manager.addSubscription(spotify)
+// Organize in collection
+const collection = new SubscriptionCollection()
+collection.addSubscription(netflix)
+collection.addSubscription(spotify)
+collection.addSubscription(gym)
 
 // Track usage
-netflix.addUsageHours(15);
-console.log(netflix.getUsageHours()) //15
+netflix.addUsageHours(25)
+spotify.addUsageHours(50)
+gym.addUsageHours(8)
 
-// Manage status
-netflix.deactivate();
-console.log(netflix.isActive()); // false
+// Calculate costs
+const calculator = new CostCalculator()
+const totalMonthly = calculator.calculateTotalMonthlyCost(collection.getAllSubscriptions())
+const categoryBreakdown = calculator.calculateCostByCategory(collection.getAllSubscriptions())
+
+// Analyze efficiency  
+const analyzer = new UsageAnalyzer()
+const inefficient = analyzer.findUnderutilizedSubscriptions(
+    collection.getAllSubscriptions(), 
+    calculator, 
+    20 // 20 kr per hour limit
+)
+
+console.log(`Total monthly: ${totalMonthly} kr`)
+console.log('Categories:', categoryBreakdown)
+console.log(`Inefficient subscriptions: ${inefficient.length}`)
 ```
 
 ### SubscriptionCollection Class
@@ -109,26 +148,66 @@ new SubscriptionCollection()
 
 **Collection Management**
 ```javascript
-manager.addSubscription(subscription)     // Add subscription to collection
-manager.removeSubscription(subscription)  // Remove subscription, returns true/false, Requires exact object reference
-manager.getAllSubscriptions()             // Returns copy of all subscriptions
+collection.addSubscription(subscription)     // Add subscription to collection
+collection.removeSubscription(subscription)  // Remove subscription, returns true/false, Requires exact object reference
+collection.getAllSubscriptions()             // Returns copy of all subscriptions
 ```
 
 **Filtering and Search**
 ```javascript
-manager.getActiveSubscriptions()              // Returns active subscriptions
-manager.getInactiveSubscriptions()            // Returns inactive subscriptions
-manager.getSubscriptionsByCategory(category)  // Filter by category
-manager.searchSubscriptionsByName(name)       // Case-insensitive partial name search
+collection.getActiveSubscriptions()              // Returns active subscriptions
+collection.getInactiveSubscriptions()            // Returns inactive subscriptions
+collection.getSubscriptionsByCategory(category)  // Filter by category
+collection.searchSubscriptionsByName(name)       // Case-insensitive partial name search
 ```
 
-### CostCalculator Class (Coming Soon)
+### CostCalculator Class
+Calculate subscription costs across different time frequencies.
 
-Calculate and analyze subscription costs across different frequencies.
+#### Constructor
+```javascript
+new CostCalculator()
+```
 
-### UsageAnalyzer Class (Coming Soon)
+#### Methods
 
-Analyze subscription usage efficiency and cost-per-hour metrics.
+**Individual Cost Calculations**
+```javascript
+calculator.calculateHourlyCost(subscription)   // Calculate hourly cost from subscription frequency
+calculator.calculateWeeklyCost(subscription)   // Calculate weekly cost from subscription frequency
+calculator.calculateMonthlyCost(subscription)  // Calculate monthly cost from subscription frequency
+calculator.calculateYearlyCost(subscription)   // Calculate yearly cost from subscription frequency
+```
+
+**Collection Cost Calculations**
+```javascript  
+calculator.calculateTotalWeeklyCost(subscriptions)   // Calculate total weekly cost for all active subscriptions
+calculator.calculateTotalMonthlyCost(subscriptions)  // Calculate total monthly cost for all active subscriptions
+calculator.calculateTotalYearlyCost(subscriptions)   // Calculate total yearly cost for all active subscriptions
+calculator.calculateCostByCategory(subscriptions)    // Returns object with monthly costs grouped by category
+```
+
+### UsageAnalyzer Class
+
+Analyze subscription usage efficiency and identify cost-inefficient subscriptions.
+
+#### Constructor
+```javascript
+new UsageAnalyzer()
+```
+
+#### Methods
+```javascript
+analyzer.analyzeCostPerHour(subscription, costCalculator)  // Calculate cost per usage hour
+analyzer.findUnderutilizedSubscriptions(subscriptions, costCalculator, maxCostPerHour)  // Find subscriptions exceeding cost limit
+```
+
+**Parameters for findUnderutilizedSubscriptions:**
+- `subscriptions` (array) - Array of subscription objects to analyze
+- `costCalculator` (CostCalculator) - Calculator instance for cost conversions
+- `maxCostPerHour` (number) - Maximum acceptable cost per hour limit
+
+**Returns:** Array of objects with `subscription` and `costPerHour` properties
 
 
 ## Requirements
