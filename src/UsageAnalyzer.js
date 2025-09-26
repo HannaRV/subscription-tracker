@@ -36,4 +36,14 @@ export class UsageAnalyzer {
         }
         return underutilized
     }
+
+    findUnusedSubscriptions(subscriptions) {
+        const unused = []
+        for (const subscription of subscriptions) {
+            if (subscription.isActive() && subscription.getUsageHours() === 0) {
+                unused.push(subscription)
+            }
+        }
+        return unused
+    }
 }
