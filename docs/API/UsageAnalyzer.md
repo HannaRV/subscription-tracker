@@ -53,6 +53,27 @@ Identifies subscriptions that exceed a specified maximum cost-per-hour limit, in
 
 **Note:** Only analyzes active subscriptions with usage hours > 0. Inactive subscriptions and those with no recorded usage are automatically excluded.
 
+#### findUnusedSubscriptions(subscriptions)
+```javascript
+analyzer.findUnusedSubscriptions(subscriptions)  // Returns Subscription[]
+```
+Identifies active subscriptions that have never been used (0 usage hours), which are inherently inefficient.
+
+**Parameters:**
+- `subscriptions` (Subscription[]) - Array of subscriptions to analyze
+
+**Returns:** `Subscription[]` - Array of active subscriptions with zero usage hours
+
+## Important Notes
+
+- Only active subscriptions are analyzed by both methods - inactive subscriptions are automatically excluded
+- `analyzeCostPerHour` requires usage hours > 0 and will throw an error for zero usage
+- `findUnderutilizedSubscriptions` only analyzes subscriptions with usage data (filters out zero usage)
+- `findUnusedSubscriptions` specifically targets subscriptions with zero usage hours
+- Cost per hour is calculated using monthly cost divided by total recorded usage hours
+- This analysis assumes usage is evenly distributed over time. It doesn't account for seasonal usage patterns
+- Combine both `findUnderutilizedSubscriptions` and `findUnusedSubscriptions` for complete inefficiency analysis
+
 ## Example
 
 ```javascript
@@ -76,10 +97,18 @@ const gymCost = analyzer.analyzeCostPerHour(gym, calculator)
 console.log(`Netflix: ${netflixCost.toFixed(2)} kr/hour`)  // 5.56 kr/hour (139 / 25)
 console.log(`Gym: ${gymCost.toFixed(2)} kr/hour`)         // 81.19 kr/hour (649.5 / 8)
 
-// Find inefficient subscriptions
+// Find subscriptions with zero usage
 const collection = new SubscriptionCollection()
 collection.addSubscription(netflix)
 collection.addSubscription(gym)
+
+const unused = analyzer.findUnusedSubscriptions(collection.getAllSubscriptions())
+console.log(`Found ${unused.length} completely unused subscriptions`)
+unused.forEach(subscription => {
+    console.log(`${subscription.getName()} - never used but costs ${subscription.getPrice()} kr per ${subscription.getFrequency()}`)
+})
+
+// Find inefficient subscriptions
 
 const inefficient = analyzer.findUnderutilizedSubscriptions(
     collection.getAllSubscriptions(),
@@ -93,22 +122,7 @@ inefficient.forEach(item => {
 })
 // Output: "SATS: 81.19 kr/hour" (exceeds 20 kr/hour threshold)
 
-// Subscriptions without usage are ignored
+// Subscriptions with zero usage are ignored
 const spotify = new Subscription("Spotify", 1200, "yearly", "music")
 collection.addSubscription(spotify)  // No usage hours added
-
-// This will still only return gym as inefficient (Spotify ignored due to 0 usage)
-const stillOnlyGym = analyzer.findUnderutilizedSubscriptions(
-    collection.getAllSubscriptions(),
-    calculator,
-    20
-)
 ```
-
-## Important Notes
-
-- Only active subscriptions with recorded usage hours are analyzed
-- Subscriptions with zero usage hours will throw an error when analyzed individually
-- The `findUnderutilizedSubscriptions` method automatically filters out subscriptions without usage data
-- Cost per hour is calculated using monthly cost divided by total recorded usage hours
-- This analysis assumes usage is evenly distributed over time - it doesn't account for seasonal usage patterns

@@ -130,6 +130,16 @@ Groups and sums monthly costs by subscription category for active subscriptions 
 **Throws:**
 - `Error` - "Subscriptions must be an array"
 
+## Important Notes
+
+- Only active subscriptions are included in total cost calculations - inactive subscriptions are automatically excluded
+- Uses average month lengths (30.44 days) and year lengths (365.25 days) for accurate conversions
+- Category grouping always returns monthly costs regardless of original subscription frequency
+- Frequency conversions may introduce minor precision differences due to averaging
+- Null or undefined subscriptions will throw errors - always validate input
+- Empty subscription arrays return 0 for totals and empty objects for category breakdowns
+- Cost calculations preserve the original currency unit - no currency conversion is performed
+
 ## Example
 
 ```javascript
@@ -160,13 +170,3 @@ console.log(categoryBreakdown)  // { streaming: 139, music: 100 }
 netflix.deactivate()
 console.log(calculator.calculateTotalMonthlyCost(subscriptions))  // 100 (only Spotify)
 ```
-
-## Important Notes
-
-- Only active subscriptions are included in total cost calculations - inactive subscriptions are automatically excluded
-- Uses average month lengths (30.44 days) and year lengths (365.25 days) for accurate conversions
-- Category grouping always returns monthly costs regardless of original subscription frequency
-- Frequency conversions may introduce minor precision differences due to averaging
-- Null or undefined subscriptions will throw errors - always validate input
-- Empty subscription arrays return 0 for totals and empty objects for category breakdowns
-- Cost calculations preserve the original currency unit - no currency conversion is performed

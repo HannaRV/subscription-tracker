@@ -2,6 +2,20 @@
 
 A JavaScript module for managing and analyzing personal subscriptions with cost calculations and usage tracking.
 
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Installation](#installation)
+- [Core Features](#core-features)
+- [Essential API](#essential-api)
+  - Subscription
+  - SubscriptionCollection
+  - CostCalculator
+  - UsageAnalyzer
+- [Complete Example](#complete-example)
+- [Requirements](#requirements)
+- [License](#license)
+- [Author](#author)
+
 ## Quick Start
 
 ```javascript
@@ -41,9 +55,12 @@ npm install subscription-tracker
 - ✅ Track active/inactive status and usage hours
 - ✅ Calculate individual and total costs by category
 - ✅ Analyze usage efficiency (cost per hour)
+- ✅ Identify completely unused subscriptions
 - ✅ Identify underutilized subscriptions
 
 ## Essential API
+
+⚠️ **Note:** Each class has important usage considerations. See complete API documentation for detailed behavior notes and limitations.
 
 ### Subscription → [Complete Subscription API](docs/API/Subscription.md)
 ```javascript
@@ -73,6 +90,7 @@ calculator.calculateCostByCategory(subscriptions)
 const analyzer = new UsageAnalyzer()
 analyzer.analyzeCostPerHour(subscription, calculator)
 analyzer.findUnderutilizedSubscriptions(subscriptions, calculator, maxCostPerHour)
+analyzer.findUnusedSubscriptions(subscriptions)
 ```
 
 ## Complete Example
@@ -96,6 +114,8 @@ const analyzer = new UsageAnalyzer()
 
 const totalMonthlyCost = calculator.calculateTotalMonthlyCost(collection.getAllSubscriptions())
 const categoryBreakdown = calculator.calculateCostByCategory(collection.getAllSubscriptions())
+const unusedSubs = analyzer.findUnusedSubscriptions(collection.getAllSubscriptions())
+console.log(`Completely unused subscriptions: ${unusedSubs.length}`)
 const inefficientSubs = analyzer.findUnderutilizedSubscriptions(
     collection.getAllSubscriptions(),
     calculator,

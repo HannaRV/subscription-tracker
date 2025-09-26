@@ -79,6 +79,15 @@ Performs case-insensitive partial name matching.
 
 **Returns:** `Subscription[]` - Subscriptions with names containing the search term
 
+## Important Notes
+
+- `removeSubscription()` requires the exact object reference - creating a new Subscription with same parameters won't work
+- `getAllSubscriptions()` returns a copy of the internal array - modifications won't affect the collection
+- Name search is case-insensitive and matches partial strings - "net" will find "Netflix"
+- Category filtering uses exact string matching - "Streaming" won't match "streaming"
+- Active/inactive filtering reflects current subscription status - deactivating a subscription immediately removes it from getActiveSubscriptions()
+- Empty arrays are returned when no matches found - methods never return null
+
 ## Example
 
 ```javascript
@@ -104,11 +113,3 @@ const allServices = collection.searchSubscriptionsByName("i")          // [netfl
 const removed = collection.removeSubscription(netflix)    // true
 const removedAgain = collection.removeSubscription(netflix)  // false (already removed)
 ```
-## Important Notes
-
-- `removeSubscription()` requires the exact object reference - creating a new Subscription with same parameters won't work
-- `getAllSubscriptions()` returns a copy of the internal array - modifications won't affect the collection
-- Name search is case-insensitive and matches partial strings - "net" will find "Netflix"
-- Category filtering uses exact string matching - "Streaming" won't match "streaming"
-- Active/inactive filtering reflects current subscription status - deactivating a subscription immediately removes it from getActiveSubscriptions()
-- Empty arrays are returned when no matches found - methods never return null
