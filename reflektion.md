@@ -19,6 +19,6 @@ Detta är en trade-off mellan olika Clean Code-principer, vilken princip som är
 Make meningful distinctions get/search
 
 
-Manager/collection intention reveling names
+SubscriptionManager ändrat till Subscriptioncollection intention reveling names
 
 I CostCalculator upprepas if/else-logik i flera beräkningsmetoder som byter mot DRY. Jag övervägde olika lösningar men samtliga kändes som over-engineering för den här modulen. Istället valde jag enkla lokala variabler för att undvika dubbelanrop av getter-metoder. Det är inte den mest eleganta lösningen, men den fungerar och är lätt att förstå för andra utvecklare. Här har jag valt pragmatisk kod framför perfekt clean code."

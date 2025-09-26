@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "node test-app/app.js",
-    "test": "node test-app/test-runner.js",
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint ./src --fix"
   },
