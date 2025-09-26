@@ -134,3 +134,28 @@ const updatedTotals = costCalculator.calculateCostByCategory(collection.getAllSu
 console.log(`Music costs after deactivation: ${updatedTotals.music || 0} kr/month`)
 
 console.log('=== Testing UsageAnalyzer Class ===')
+
+const analyzer = new UsageAnalyzer()
+
+// Add usage data to existing subscriptions for testing
+spotify.addUsageHours(20)  // 20 hours of Spotify usage
+sats.addUsageHours(8)      // 8 hours of gym usage  
+hboMax.addUsageHours(25)   // 25 hours of HBO Max
+
+console.log('--- Testing analyzeCostPerHour ---')
+console.log(`Spotify cost per hour: ${analyzer.analyzeCostPerHour(spotify, costCalculator).toFixed(2)} kr/hour`)
+console.log(`SATS cost per hour: ${analyzer.analyzeCostPerHour(sats, costCalculator).toFixed(2)} kr/hour`) 
+console.log(`HBO Max cost per hour: ${analyzer.analyzeCostPerHour(hboMax, costCalculator).toFixed(2)} kr/hour`)
+
+console.log('--- Testing findUnderutilizedSubscriptions ---')
+const maxCostPerHour = 15 // 15 kr per hour limit
+const underutilized = analyzer.findUnderutilizedSubscriptions(
+    collection.getAllSubscriptions(), 
+    costCalculator, 
+    maxCostPerHour
+)
+
+console.log(`Found ${underutilized.length} underutilized subscriptions with cost > ${maxCostPerHour} kr/hour:`)
+underutilized.forEach(item => {
+    console.log(`- ${item.subscription.getName()}: ${item.costPerHour.toFixed(2)} kr/hour`)
+})
