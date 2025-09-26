@@ -42,7 +42,7 @@ console.log(`Cost per hour: ${costPerHour.toFixed(2)} kr`)
 
 ```bash
 # Clone from GitHub
-git clone https://github.com/username/subscription-tracker
+git clone https://github.com/HannaRV/subscription-tracker
 
 # Or install from npm (when published)
 npm install subscription-tracker
