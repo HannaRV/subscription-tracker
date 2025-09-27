@@ -10,7 +10,8 @@
  * Line 107:  testCostCalculator() - Cost calculations and conversions between frequencies
  * Line 168: testUsageAnalyzer() - Usage efficiency analysis and finding unused subscriptions
  * Line 223: testErrorHandling() - Input validation and error conditions
- * Line 301: Main execution - Comment out functions to run selective tests
+ * Line 286: testEdgeCases() - Boundary conditions and empty/invalid inputs
+ * Line 324: Main execution - Comment out functions to run selective tests
  * 
  * Usage: Ctrl+G (VS Code/most editors) to jump to line number
  * To run selective tests: Comment out unwanted function calls at bottom of file
@@ -297,6 +298,28 @@ function testErrorHandling() {
         }
     }
 }
+    // Test edge cases
+    function testEdgeCases() {
+        console.log('=== Testing Edge Cases ===')
+
+        // Test search with no matches found
+        const notFound = collection.searchSubscriptionsByName('nonexistentservice')
+        console.log(`Search for non-existent service: ${notFound.length} results`)
+
+        // Test remove non-existent subscription from collection
+        const notInCollection = new Subscription('NonExistent', 100, 'monthly', 'test')
+        const removeResult = collection.removeSubscription(notInCollection)
+        console.log(`Remove non-existent subscription in collection: ${removeResult}`)
+
+        // Test empty collection scenarios
+        const emptyCollection = new SubscriptionCollection()
+        console.log(`Empty collection size: ${emptyCollection.getAllSubscriptions().length}`)
+        console.log(`Active in empty collection: ${emptyCollection.getActiveSubscriptions().length}`)
+        
+        // Test calculator with empty array
+        const totalCostEmpty = costCalculator.calculateTotalMonthlyCost(emptyCollection.getAllSubscriptions())
+        console.log(`Total monthly cost of empty collection: ${totalCostEmpty} kr`)
+    }
 
 // Main execution - comment out any section you don't want to run
 setupTestData()
@@ -313,5 +336,8 @@ console.log('\n')
 testUsageAnalyzer()
 console.log('\n')
 
-testErrorHandling()  // Comment this out if you only want basic tests
+testErrorHandling()
+console.log('\n')
+
+testEdgeCases() // Comment this out if you only want basic tests
 console.log('\n=== All Tests Completed ===\n')
