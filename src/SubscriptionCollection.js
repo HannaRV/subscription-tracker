@@ -14,6 +14,9 @@ export class SubscriptionCollection {
     }
 
     // Collection management
+    /**
+     * @throws {Error}
+     */
     addSubscription(subscription) {
         if (!subscription) {
             throw new Error('Subscription cannot be null')
@@ -21,6 +24,9 @@ export class SubscriptionCollection {
         this.#subscriptions.push(subscription)
     }
 
+    /**
+     * @returns {boolean}
+     */
     removeSubscription(subscription) {
         const index = this.#subscriptions.indexOf(subscription)
         if (index !== -1) {
@@ -31,23 +37,38 @@ export class SubscriptionCollection {
     }
 
     // Retrieval - all
+    /**
+     * @returns {Subscription[]}
+     */
     getAllSubscriptions() {
         return [...this.#subscriptions]
     }
 
-    // Retrieval - filtered 
+    // Retrieval - filtered
+    /**
+     * @returns {Subscription[]}
+     */
     getActiveSubscriptions() {
         return this.#subscriptions.filter(subscription => subscription.isActive())
     }
 
+    /**
+     * @returns {Subscription[]}
+     */
     getInactiveSubscriptions() {
         return this.#subscriptions.filter(subscription => !subscription.isActive())
     }
 
+    /**
+     * @returns {Subscription[]}
+     */
     getSubscriptionsByCategory(category) {
         return this.#subscriptions.filter(subscription => subscription.getCategory() === category)
     }
 
+    /**
+     * @returns {Subscription[]}
+     */
     searchSubscriptionsByName(name) {
         return this.#subscriptions.filter(subscription => subscription.getName().toLowerCase().includes(name.toLowerCase()))
     }
