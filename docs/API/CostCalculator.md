@@ -132,13 +132,14 @@ Groups and sums monthly costs by subscription category for active subscriptions 
 
 ## Important Notes
 
-- Only active subscriptions are included in total cost calculations - inactive subscriptions are automatically excluded
+- Calculations assume standard billing cycles, no handling of promotional periods or variable pricing
+- Cost calculations preserve the original currency unit, no currency conversion is performed
 - Uses average month lengths (30.44 days) and year lengths (365.25 days) for accurate conversions
-- Category grouping always returns monthly costs regardless of original subscription frequency
 - Frequency conversions may introduce minor precision differences due to averaging
-- Null or undefined subscriptions will throw errors - always validate input
+- Only active subscriptions are included in total cost calculations, inactive subscriptions are automatically excluded
+- Category grouping always returns monthly costs regardless of original subscription frequency
+- Null or undefined subscriptions will throw errors, always validate input
 - Empty subscription arrays return 0 for totals and empty objects for category breakdowns
-- Cost calculations preserve the original currency unit - no currency conversion is performed
 
 ## Example
 

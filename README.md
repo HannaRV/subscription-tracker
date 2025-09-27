@@ -1,11 +1,11 @@
 # Subscription Tracker
-
-A JavaScript module for managing and analyzing personal subscriptions with cost calculations and usage tracking.
+A JavaScript module for managing and analyzing personal subscriptions. Convert between billing frequencies, identify unused services, analyze cost efficiency, and make calculated decisions about which subscriptions to keep or cancel.
 
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Core Features](#core-features)
+- [Purpose](#purpose)
 - [Essential API](#essential-api)
   - Subscription
   - SubscriptionCollection
@@ -57,6 +57,16 @@ npm install subscription-tracker
 - ✅ Analyze usage efficiency (cost per hour)
 - ✅ Identify completely unused subscriptions
 - ✅ Identify underutilized subscriptions
+
+## Purpose
+
+Subscription Tracker helps individuals take control of their subscription expenses by providing clear insights into spending patterns. The module addresses common problems:
+
+- Converting between different billing frequencies for fair cost comparison
+- Identifying unused subscriptions costing you money
+- Finding overpriced services relative to your usage
+- Calculating total spending across categories
+- Making calculated analysis of which subscriptions to keep or cancel
 
 ## Essential API
 

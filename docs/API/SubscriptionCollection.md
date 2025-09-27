@@ -81,12 +81,13 @@ Performs case-insensitive partial name matching.
 
 ## Important Notes
 
-- `removeSubscription()` requires the exact object reference - creating a new Subscription with same parameters won't work
-- `getAllSubscriptions()` returns a copy of the internal array - modifications won't affect the collection
-- Name search is case-insensitive and matches partial strings - "net" will find "Netflix"
-- Category filtering uses exact string matching - "Streaming" won't match "streaming"
-- Active/inactive filtering reflects current subscription status - deactivating a subscription immediately removes it from getActiveSubscriptions()
-- Empty arrays are returned when no matches found - methods never return null
+- No duplicate prevention, same subscription can be added multiple times
+- getAllSubscriptions() returns a copy of the internal array, modifications won't affect the collection
+- removeSubscription() requires the exact object reference, creating a new Subscription with same parameters won't work
+- Active/inactive filtering reflects current subscription status, deactivating a subscription immediately removes it from getActiveSubscriptions()
+- Category filtering uses exact string matching, "Streaming" won't match "streaming"
+- Name search is case-insensitive and matches partial strings, "net" will find "Netflix"
+- Empty arrays are returned when no matches found, methods never return null
 
 ## Example
 

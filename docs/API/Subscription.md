@@ -47,12 +47,14 @@ subscription.getUsageHours()       // Returns number - total usage hours
 
 ## Important Notes
 
-- Category defaults to "other" if not specified - this affects filtering and grouping
-- Name validation requires non-empty string - whitespace-only names will throw an error
-- Price must be 0 or higher - negative values are not allowed
-- Usage hours accumulate over time - there's no reset functionality
+- Manual usage tracking required, no automatic integration with subscription services
+- Data exists only in memory during runtime, no built-in persistence
+- Category defaults to "other" if not specified, this affects filtering and grouping
+- Frequency validation is strict only "weekly", "monthly", "yearly" are accepted
+- Name validation requires non-empty string,  whitespace-only names will throw an error
+- Price must be 0 or higher, negative values are not allowed
+- Usage hours accumulate over time, there's no reset functionality
 - Status changes (activate/deactivate) immediately affect collection filtering results
-- Frequency validation is strict - only "weekly", "monthly", "yearly" are accepted
 
 ## Example
 

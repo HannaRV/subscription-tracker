@@ -66,13 +66,14 @@ Identifies active subscriptions that have never been used (0 usage hours), which
 
 ## Important Notes
 
-- Only active subscriptions are analyzed by both methods - inactive subscriptions are automatically excluded
-- `analyzeCostPerHour` requires usage hours > 0 and will throw an error for zero usage
-- `findUnderutilizedSubscriptions` only analyzes subscriptions with usage data (filters out zero usage)
-- `findUnusedSubscriptions` specifically targets subscriptions with zero usage hours
+- Analysis assumes usage is evenly distributed over time
+- Cost per hour calculations require CostCalculator dependency for conversions
+- Only active subscriptions are analyzed by both methods, inactive subscriptions are automatically excluded
+- analyzeCostPerHour requires usage hours > 0 and will throw an error for zero usage
+- findUnderutilizedSubscriptions only analyzes subscriptions with usage data (filters out zero usage)
+- findUnusedSubscriptions specifically targets subscriptions with zero usage hours
 - Cost per hour is calculated using monthly cost divided by total recorded usage hours
-- This analysis assumes usage is evenly distributed over time. It doesn't account for seasonal usage patterns
-- Combine both `findUnderutilizedSubscriptions` and `findUnusedSubscriptions` for complete inefficiency analysis
+- Combine both findUnderutilizedSubscriptions and findUnusedSubscriptions for complete inefficiency analysis
 
 ## Example
 
