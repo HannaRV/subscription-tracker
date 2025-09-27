@@ -17,6 +17,13 @@ export class Subscription {
   //Class constants
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
+  /**
+   * @param {string} name
+   * @param {number} price
+   * @param {string} frequency
+   * @param {string} [category='other']
+   * @throws {Error} When name is empty, price is negative, or frequency is invalid
+   */
   constructor(name, price, frequency, category = 'other') {
 
     //Validate inputs
@@ -53,24 +60,42 @@ export class Subscription {
   }
 
   //Public getter methods
-
+  /**
+   * @returns {string}
+   */
   getName() {
     return this.#name
   }
 
+  /**
+   * @returns {number}
+   */
   getPrice() {
     return this.#price
   }
 
+  /**
+   * @returns {string}
+   */
   getFrequency() {
     return this.#frequency
   }
 
+  /**
+   * @returns {string}
+   */
   getCategory() {
     return this.#category
   }
 
   //Status management methods
+  /**
+   * @returns {boolean}
+   */
+  isActive() {
+    return this.#activeStatus
+  }
+
   deactivate() {
     this.#activeStatus = false
   }
@@ -79,11 +104,11 @@ export class Subscription {
     this.#activeStatus = true
   }
 
-  isActive() {
-    return this.#activeStatus
-  }
-
   //Usage tracking methods
+  /**
+   * @param {number} hours
+   * @throws {Error}
+   */
   addUsageHours(hours) {
     if (hours <= 0) {
       throw new Error('Usage hours must be positive')
@@ -91,6 +116,9 @@ export class Subscription {
     this.#usageHours += hours
   }
 
+  /**
+   * @returns {number}
+   */
   getUsageHours() {
     return this.#usageHours
   }
