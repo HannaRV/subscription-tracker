@@ -7,6 +7,10 @@
 
 export class UsageAnalyzer {
 
+    /**
+     * @returns {number}
+     * @throws {Error}
+     */
     analyzeCostPerHour(subscription, costCalculator) {
         if (subscription.getUsageHours() === 0) {
             throw new Error('Cannot analyze cost per hour: no usage recorded.')
@@ -15,7 +19,10 @@ export class UsageAnalyzer {
         return costCalculator.calculateMonthlyCost(subscription) / subscription.getUsageHours()
     }
 
-    // Find subscriptions with poor usage efficiency
+    /**
+     * @returns {object[]}
+     * @throws {Error}
+     */
     findUnderutilizedSubscriptions(subscriptions, costCalculator, maxCostPerHour) {
         if (maxCostPerHour <= 0) {
             throw new Error('Maximum cost per hour must be positive')
@@ -37,6 +44,9 @@ export class UsageAnalyzer {
         return underutilized
     }
 
+    /**
+     * @returns {Subscription[]}
+     */
     findUnusedSubscriptions(subscriptions) {
         const unused = []
         for (const subscription of subscriptions) {

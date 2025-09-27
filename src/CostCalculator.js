@@ -24,6 +24,9 @@ export class CostCalculator {
     }
 
     //Calculate cost for individual subscriptions per frequency (hourly, weekly, monthly, yearly)
+    /**
+     * @returns {number}
+     */
     calculateHourlyCost(subscription) {
         this.#validateSubscription(subscription)
 
@@ -44,6 +47,9 @@ export class CostCalculator {
         return price
     }
 
+    /**
+     * @returns {number}
+     */
     calculateWeeklyCost(subscription) {
         this.#validateSubscription(subscription)
 
@@ -61,6 +67,9 @@ export class CostCalculator {
         return price
     }
 
+    /**
+     * @returns {number}
+     */
     calculateMonthlyCost(subscription) {
         this.#validateSubscription(subscription)
 
@@ -77,6 +86,9 @@ export class CostCalculator {
         return price
     }
 
+    /**
+     * @returns {number}
+     */
     calculateYearlyCost(subscription) {
         this.#validateSubscription(subscription)
 
@@ -101,6 +113,9 @@ export class CostCalculator {
     }
 
     //Calculate total cost for multiple subscriptions per frequency (weekly, monthly, yearly)
+    /**
+     * @returns {number}
+     */
     calculateTotalWeeklyCost(subscriptions) {
         this.#validateSubscriptionArray(subscriptions)
 
@@ -109,6 +124,9 @@ export class CostCalculator {
             .reduce((total, subscription) => total + this.calculateWeeklyCost(subscription), 0)
     }
 
+    /**
+     * @returns {number}
+     */
     calculateTotalMonthlyCost(subscriptions) {
         this.#validateSubscriptionArray(subscriptions)
 
@@ -117,6 +135,9 @@ export class CostCalculator {
             .reduce((total, subscription) => total + this.calculateMonthlyCost(subscription), 0)
     }
 
+    /**
+     * @returns {number}
+     */
     calculateTotalYearlyCost(subscriptions) {
         this.#validateSubscriptionArray(subscriptions)
 
@@ -125,6 +146,9 @@ export class CostCalculator {
             .reduce((total, subscription) => total + this.calculateYearlyCost(subscription), 0)
     }
 
+    /**
+     * @returns {object}
+     */
     calculateCostByCategory(subscriptions) {
         this.#validateSubscriptionArray(subscriptions)
         return this.#groupCostsByCategory(this.#filterActiveSubscriptions(subscriptions))
