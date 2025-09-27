@@ -147,7 +147,7 @@ export class CostCalculator {
     }
 
     /**
-     * @returns {object}
+     * @returns {Object} Category names as keys with monthly costs as values
      */
     calculateCostByCategory(subscriptions) {
         this.#validateSubscriptionArray(subscriptions)

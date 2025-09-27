@@ -20,7 +20,7 @@ export class UsageAnalyzer {
     }
 
     /**
-     * @returns {object[]}
+     * @returns {object[]} Objects with subscription and costPerHour properties
      * @throws {Error}
      */
     findUnderutilizedSubscriptions(subscriptions, costCalculator, maxCostPerHour) {

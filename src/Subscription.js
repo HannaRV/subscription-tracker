@@ -107,7 +107,7 @@ export class Subscription {
   //Usage tracking methods
   /**
    * @param {number} hours
-   * @throws {Error}
+   * @throws {Error} When hours is zero or negative
    */
   addUsageHours(hours) {
     if (hours <= 0) {

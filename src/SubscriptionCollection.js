@@ -25,7 +25,7 @@ export class SubscriptionCollection {
     }
 
     /**
-     * @returns {boolean}
+    * @returns {boolean} True if removed, false if not found
      */
     removeSubscription(subscription) {
         const index = this.#subscriptions.indexOf(subscription)
