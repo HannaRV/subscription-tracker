@@ -1,5 +1,5 @@
 # Subscription Tracker
-A JavaScript module for managing and analyzing personal subscriptions. Convert between billing frequencies, identify unused services, analyze cost efficiency, and make calculated decisions about which subscriptions to keep or cancel.
+A JavaScript module for managing and analyzing personal subscriptions. Convert between billing frequencies, identify unused services, analyze cost efficiency and make calculated decisions about which subscriptions to keep or cancel.
 
 ## Table of Contents
 - [Quick Start](#quick-start)

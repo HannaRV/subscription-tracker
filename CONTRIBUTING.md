@@ -18,7 +18,7 @@ For basic setup and installation instructions, see [README.md](README.md).
 ## How to Contribute
 
 ### Reporting Bugs
-Before creating a bug report, please check if the issue already exists in our [GitHub Issues](https://github.com/HANNARV/subscription-tracker/issues).
+Before creating a bug report, please check if the issue already exists in [GitHub Issues](https://github.com/HANNARV/subscription-tracker/issues).
 
 When creating a bug report, include:
 - Clear description of the problem
@@ -115,7 +115,7 @@ The test file also provides comprehensive examples of how to use the library, ma
 
 ## Questions?
 
-For usage questions, see the main [README.md](README.md). For development questions, create an issue with the "question" label.
+For usage questions, see [README.md](README.md). For development questions, create an issue with the "question" label.
 
 ## License
 
