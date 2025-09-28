@@ -1,7 +1,7 @@
 {
   "name": "subscription-tracker",
   "version": "1.0.0",
-  "description": "A JavaScript module for subscription tracking",
+  "description": "A JavaScript module for managing and analyzing personal subscriptions with cost calculations and usage tracking",
   "type": "module",
   "main": "src/index.js",
   "engines": {
@@ -12,17 +12,15 @@
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint ./src --fix"
   },
-  "contributors": [
-    "Hanna Rubio Vretby <hr222sy@student.lnu.se>"
-  ],
+  "author": "Hanna Rubio Vretby <hr222sy@student.lnu.se>",
   "license": "MIT",
   "private": false,
   "keywords": [
-  "subscription",
-  "tracking", 
-  "personal-finance",
-  "cost-calculator",
-  "usage-analyzer"
+    "subscription",
+    "finance",
+    "budget",
+    "calculator",
+    "tracking"
   ],
   "repository": {
     "type": "git",
@@ -30,7 +28,8 @@
   },
   "files": [
     "src/",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "devDependencies": {
     "@lnu/eslint-config": "^1.1.10",

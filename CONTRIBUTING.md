@@ -4,7 +4,7 @@ Contributions to the Subscription Tracker library are welcome! This document pro
 
 ## Getting Started
 
-For basic setup and installation instructions, see the main [README.md](README.md).
+For basic setup and installation instructions, see [README.md](README.md).
 
 ### Development Setup
 1. Fork the repository on GitHub
@@ -18,7 +18,7 @@ For basic setup and installation instructions, see the main [README.md](README.m
 ## How to Contribute
 
 ### Reporting Bugs
-Before creating a bug report, please check if the issue already exists in our [GitHub Issues](https://github.com/YOUR_USERNAME/subscription-tracker/issues).
+Before creating a bug report, please check if the issue already exists in our [GitHub Issues](https://github.com/HANNARV/subscription-tracker/issues).
 
 When creating a bug report, include:
 - Clear description of the problem

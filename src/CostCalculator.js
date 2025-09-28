@@ -23,9 +23,9 @@ export class CostCalculator {
         }
     }
 
-    //Calculate cost for individual subscriptions per frequency (hourly, weekly, monthly, yearly)
+    //Calculate cost for individual subscriptions per frequency (weekly, monthly, yearly) and hourly rate
     /**
-     * @returns {number}
+     * @returns {number} Cost per hour (calculated from subscription's actual frequency)
      */
     calculateHourlyCost(subscription) {
         this.#validateSubscription(subscription)
