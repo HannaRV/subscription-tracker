@@ -1,6 +1,6 @@
 /**
  * @file Test application for subscription-tracker module.
- * @module test-app/app
+ * @module test-app/app.js
  * @author Hanna Rubio Vretby <hr222sy@student.lnu.se>
  * @version 1.0.0
 

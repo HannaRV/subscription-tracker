@@ -146,6 +146,15 @@ console.log(`Inefficient subscriptions: ${inefficientSubs.length}`)
 
 MIT
 
+## Versioning
+
+This project uses [Semantic Versioning](https://semver.org/):
+- **MAJOR** version for incompatible API changes
+- **MINOR** version for new functionality
+- **PATCH** version for bug fixes
+
+Current version: **1.0.0**
+
 ## Author
 
 Hanna Rubio Vretby <hr222sy@student.lnu.se>
