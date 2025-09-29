@@ -9,12 +9,16 @@ export class SubscriptionCollection {
     //Private fields
     #subscriptions
 
+    /**
+     * Creates a new empty subscription collection.
+     */
     constructor() {
         this.#subscriptions = []
     }
 
     // Collection management
     /**
+     * @param {Subscription} subscription
      * @throws {Error}
      */
     addSubscription(subscription) {
@@ -25,7 +29,8 @@ export class SubscriptionCollection {
     }
 
     /**
-    * @returns {boolean} True if removed, false if not found
+     * @param {Subscription} subscription
+     * @returns {boolean} True if removed, false if not found
      */
     removeSubscription(subscription) {
         const index = this.#subscriptions.indexOf(subscription)
@@ -60,6 +65,7 @@ export class SubscriptionCollection {
     }
 
     /**
+     * @param {string} category
      * @returns {Subscription[]}
      */
     getSubscriptionsByCategory(category) {
@@ -67,9 +73,15 @@ export class SubscriptionCollection {
     }
 
     /**
+     * Searches for subscriptions by name using case-insensitive partial matching.
+     * @param {string} name
      * @returns {Subscription[]}
      */
     searchSubscriptionsByName(name) {
-        return this.#subscriptions.filter(subscription => subscription.getName().toLowerCase().includes(name.toLowerCase()))
+        return this.#subscriptions.filter(subscription => this.#matchesName(subscription, name))
+    }
+
+        #matchesName(subscription, searchTerm) {
+        return subscription.getName().toLowerCase().includes(searchTerm.toLowerCase())
     }
 }

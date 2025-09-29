@@ -15,6 +15,10 @@ export class Subscription {
   #usageHours
 
   //Class constants
+  /**
+   * Valid billing frequencies for subscriptions.
+   * @type {string[]}
+   */
   static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
   /**
@@ -96,10 +100,16 @@ export class Subscription {
     return this.#activeStatus
   }
 
+  /**
+   * @returns {void}
+   */
   deactivate() {
     this.#activeStatus = false
   }
 
+  /**
+   * @returns {void}
+   */
   activate() {
     this.#activeStatus = true
   }

@@ -7,13 +7,28 @@
 
 export class CostCalculator {
     //Class constants
+    /** @type {number} */
     static HOURS_PER_DAY = 24
+
+    /** @type {number} */
     static HOURS_PER_WEEK = 7 * 24
+
+    /** @type {number} */
     static HOURS_PER_MONTH = 30.44 * 24 // Average month length
+
+    /** @type {number} */
     static HOURS_PER_YEAR = 365.25 * 24 // Approximation including leap years
+
+    /** @type {number} */
     static DAYS_PER_WEEK = 7
+
+    /** @type {number} */
     static WEEKS_PER_MONTH = 4.33 // Average weeks per month
+
+    /** @type {number} */
     static WEEKS_PER_YEAR = 52.18 // Average weeks per year including leap years
+    
+    /** @type {number} */
     static MONTHS_PER_YEAR = 12
 
     //Private validation method for individual subscriptions
@@ -25,6 +40,7 @@ export class CostCalculator {
 
     //Calculate cost for individual subscriptions per frequency (weekly, monthly, yearly) and hourly rate
     /**
+     * @param {Subscription} subscription
      * @returns {number} Cost per hour (calculated from subscription's actual frequency)
      */
     calculateHourlyCost(subscription) {
@@ -48,6 +64,7 @@ export class CostCalculator {
     }
 
     /**
+     * @param {Subscription} subscription
      * @returns {number}
      */
     calculateWeeklyCost(subscription) {
@@ -68,6 +85,7 @@ export class CostCalculator {
     }
 
     /**
+     * @param {Subscription} subscription
      * @returns {number}
      */
     calculateMonthlyCost(subscription) {
@@ -87,6 +105,7 @@ export class CostCalculator {
     }
 
     /**
+     * @param {Subscription} subscription
      * @returns {number}
      */
     calculateYearlyCost(subscription) {
@@ -114,6 +133,7 @@ export class CostCalculator {
 
     //Calculate total cost for multiple subscriptions per frequency (weekly, monthly, yearly)
     /**
+     * @param {Subscription[]} subscriptions
      * @returns {number}
      */
     calculateTotalWeeklyCost(subscriptions) {
@@ -125,6 +145,7 @@ export class CostCalculator {
     }
 
     /**
+     * @param {Subscription[]} subscriptions
      * @returns {number}
      */
     calculateTotalMonthlyCost(subscriptions) {
@@ -136,6 +157,7 @@ export class CostCalculator {
     }
 
     /**
+     * @param {Subscription[]} subscriptions
      * @returns {number}
      */
     calculateTotalYearlyCost(subscriptions) {
@@ -147,6 +169,7 @@ export class CostCalculator {
     }
 
     /**
+     * @param {Subscription[]} subscriptions
      * @returns {Object} Category names as keys with monthly costs as values
      */
     calculateCostByCategory(subscriptions) {

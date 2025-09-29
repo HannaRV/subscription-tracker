@@ -8,6 +8,9 @@
 export class UsageAnalyzer {
 
     /**
+     * Calculates how much each usage hour costs for a subscription.
+     * @param {Subscription} subscription
+     * @param {CostCalculator} costCalculator
      * @returns {number}
      * @throws {Error}
      */
@@ -20,6 +23,10 @@ export class UsageAnalyzer {
     }
 
     /**
+     * Finds subscriptions where cost per hour exceeds the specified maximum cost.
+     * @param {Subscription[]} subscriptions
+     * @param {CostCalculator} costCalculator
+     * @param {number} maxCostPerHour
      * @returns {object[]} Objects with subscription and costPerHour properties
      * @throws {Error}
      */
@@ -45,15 +52,11 @@ export class UsageAnalyzer {
     }
 
     /**
+     * Finds active subscriptions with zero recorded usage hours.
+     * @param {Subscription[]} subscriptions
      * @returns {Subscription[]}
      */
     findUnusedSubscriptions(subscriptions) {
-        const unused = []
-        for (const subscription of subscriptions) {
-            if (subscription.isActive() && subscription.getUsageHours() === 0) {
-                unused.push(subscription)
-            }
-        }
-        return unused
+        return subscriptions.filter(subscription => subscription.isActive() && subscription.getUsageHours() === 0)
     }
 }
