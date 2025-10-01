@@ -34,6 +34,7 @@ export class Subscription {
     this.#validateName(name)
     this.#validatePrice(price)
     this.#validateFrequency(frequency)
+    this.#validateCategory(category) 
 
     //Initialize properties
     this.#name = name
@@ -62,6 +63,12 @@ export class Subscription {
       throw new Error('Frequency must be weekly, monthly, or yearly')
     }
   }
+
+  #validateCategory(category) {
+    if (typeof category !== 'string') {
+        throw new Error('Category must be a string')
+    }
+}
 
   //Public getter methods
   /**

@@ -49,7 +49,7 @@ subscription.getUsageHours()       // Returns number - total usage hours
 
 - Manual usage tracking required, no automatic integration with subscription services
 - Data exists only in memory during runtime, no built-in persistence
-- Category has no validation. Any string value is accepted for user-defined categories and defaults to "other" if not specified, which affects filtering and grouping
+- Category validates that input is a string but accepts any string value for user-defined categories and defaults to "other" if not specified, which affects filtering and grouping
 - Frequency validation is strict only "weekly", "monthly", "yearly" are accepted
 - Name validation requires non-empty string,  whitespace-only names will throw an error
 - Price must be 0 or higher, negative values are not allowed
