@@ -1,5 +1,5 @@
 # Subscription Tracker
-⚠️ Note: This project was developed for a school assignment and is not intended for production use.
+⚠️ Note: This is my first module, created for a school assignment and to practice clean code. It may not be fully polished.
 
 A JavaScript module for managing and analyzing personal subscriptions. Convert between billing frequencies, identify unused services, analyze cost efficiency and make calculated decisions about which subscriptions to keep or cancel.
 
