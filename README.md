@@ -136,7 +136,7 @@ console.log(`Inefficient subscriptions: ${inefficientSubs.length}`)
 
 ## Requirements
 
-- Node.js >=14.0.0
+- Node.js >=20.6.0
 - ES6 modules support
 
 ## License
