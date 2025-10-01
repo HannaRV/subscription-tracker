@@ -56,6 +56,14 @@ Jag har strävat efter ’Use descriptive names’, där namnet tydligt kommunic
 
 För felhantering följer modulen strikt 'Prefer Exceptions to Returning Error Codes'. Metoderna kastar exceptions med beskrivande meddelanden vid felaktig input istället för att returnera null eller felkoder. Detta gör felhanteringen tydligare och tvingar användaren att hantera fel korrekt. Det är sedan applikationens ansvar att fånga och hantera dessa exceptions med try/catch.
 
+**Reflektion över egen kodkvalitet**
+Det har varit en väldigt lärorik process att tillämpa Clean Code-principer i utvecklingen av min modul. Under arbetet insåg jag hur givande och tidssparande det är med självdokumenterande kod, inte bara för andra utan även mig själv. Jag är van vid omfattande JSDoc-dokumentation enligt LNU-standard. Det var en märklig upplevelse att inse hur mycket av dokumentationen som blev överflödig när koden talar för sig själv.
+
+Jag har strävat efter att skapa en välstrukturerad modul med tydlig separation of concerns med olika klasser för olika ansvarsområden. Användning av privata metoder för att hålla publika metoder så små och fokuserade som möjligt, namngivna konstanter eliminerade magiska nummer och Command Query Separation tillämpades konsekvent. Förbättringsområden finns naturligtvis både i koden och i min förståelse av principerna, vilket jag vill vara transparent med i den här reflektionen.
+
+Genom denna assignment tar jag med mig vikten av att ’kommunicera lösningen, inte bara lösa problemet’. Den omfattande API-dokumentationen och de tydliga felmeddelanden som jag skapat hoppas jag kan hjälpa andra utvecklare förstå koden likväl som att få den att fungera.
+
+Att analysera modulen utifrån Clean Code-perspektiv har varit en ögonöppnare och krävt mycket tankeverksamhet. I varje designval tvingades jag reflektera över hur en utomstående utvecklare ska förstå koden, vilket ställde mig inför konstanta vägskäl. Att följa Clean Code i alla avseenden har varit omöjligt för mig, vissa principer hamnar i konflikt med varandra, och jag har många gånger fått låta kontexten avgöra vilket val som är mest lämpligt. Alla beslut har nog inte varit 'rätt' men jag har reflekterat och lärt mig väldigt mycke. Det är jag tacksam för.
 
 calculateCosByCategory endast måndasberäkning
 
