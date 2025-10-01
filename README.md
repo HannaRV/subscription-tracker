@@ -14,6 +14,7 @@ A JavaScript module for managing and analyzing personal subscriptions. Convert b
 - [Complete Example](#complete-example)
 - [Requirements](#requirements)
 - [License](#license)
+- [Versioning](#versioning)
 - [Author](#author)
 
 ## Quick Start
@@ -136,8 +137,9 @@ console.log(`Inefficient subscriptions: ${inefficientSubs.length}`)
 
 ## Requirements
 
-- Node.js >=20.6.0
-- ES6 modules support
+- **Language:** JavaScript (ES2020+)
+- **Runtime:** Node.js >=20.6.0
+- **Module system:** ES6 modules
 
 ## License
 
