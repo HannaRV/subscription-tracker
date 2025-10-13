@@ -6,7 +6,6 @@
  */
 
 export class SubscriptionCollection {
-    //Private fields
     #subscriptions
 
     /**
@@ -16,7 +15,6 @@ export class SubscriptionCollection {
         this.#subscriptions = []
     }
 
-    // Collection management
     /**
      * @param {Subscription} subscription
      * @throws {Error}
@@ -41,7 +39,6 @@ export class SubscriptionCollection {
         return false
     }
 
-    // Retrieval - all
     /**
      * @returns {Subscription[]}
      */
@@ -49,7 +46,6 @@ export class SubscriptionCollection {
         return [...this.#subscriptions]
     }
 
-    // Retrieval - filtered
     /**
      * @returns {Subscription[]}
      */
@@ -81,7 +77,7 @@ export class SubscriptionCollection {
         return this.#subscriptions.filter(subscription => this.#matchesName(subscription, name))
     }
 
-        #matchesName(subscription, searchTerm) {
+    #matchesName(subscription, searchTerm) {
         return subscription.getName().toLowerCase().includes(searchTerm.toLowerCase())
     }
 }

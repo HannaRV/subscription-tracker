@@ -33,14 +33,12 @@ export class CostCalculator {
     /** @type {number} */
     static MONTHS_PER_YEAR = 12
 
-    //Private validation method for individual subscriptions
     #validateSubscription(subscription) {
         if (!subscription) {
             throw new Error('Subscription cannot be null')
         }
     }
 
-    //Calculate cost for individual subscriptions per frequency (weekly, monthly, yearly) and hourly rate
     /**
      * @param {Subscription} subscription
      * @returns {number} Cost per hour (calculated from subscription's actual frequency)
@@ -125,14 +123,12 @@ export class CostCalculator {
         return price
     }
 
-    //Private validation method for multiple subscriptions (array)
     #validateSubscriptionArray(subscriptions) {
         if (!Array.isArray(subscriptions)) {
             throw new Error('Subscriptions must be an array')
         }
     }
 
-    //Calculate total cost for multiple subscriptions per frequency (weekly, monthly, yearly)
     /**
      * @param {Subscription[]} subscriptions
      * @returns {number}

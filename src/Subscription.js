@@ -13,7 +13,6 @@ export const FREQUENCY = {
 
 export class Subscription {
 
-  //Private fields
   #name
   #price
   #frequency
@@ -21,7 +20,6 @@ export class Subscription {
   #activeStatus
   #usageHours
 
-  //Class constants
   /**
    * Valid billing frequencies for subscriptions.
    * @type {string[]}
@@ -53,7 +51,6 @@ export class Subscription {
     this.#usageHours = 0
   }
 
-  //Private validation methods
   #validateName(name) {
     if (!name || typeof name !== 'string') {
       throw new Error('Name must be a non-empty string')
@@ -78,7 +75,6 @@ export class Subscription {
     }
   }
 
-  //Public getter methods
   /**
    * @returns {string}
    */
@@ -107,7 +103,6 @@ export class Subscription {
     return this.#category
   }
 
-  //Status management methods
   /**
    * @returns {boolean}
    */
@@ -129,7 +124,6 @@ export class Subscription {
     this.#activeStatus = true
   }
 
-  //Usage tracking methods
   /**
    * @param {number} hours
    * @throws {Error} When hours is zero or negative
