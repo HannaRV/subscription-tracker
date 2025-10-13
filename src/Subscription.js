@@ -5,7 +5,14 @@
  * @version 1.0.0
  */
 
+export const FREQUENCY = {
+  WEEKLY: 'weekly',
+  MONTHLY: 'monthly',
+  YEARLY: 'yearly'
+}
+
 export class Subscription {
+
   //Private fields
   #name
   #price
@@ -19,7 +26,8 @@ export class Subscription {
    * Valid billing frequencies for subscriptions.
    * @type {string[]}
    */
-  static VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
+  static VALID_FREQUENCIES = Object.values(FREQUENCY)
+
 
   /**
    * @param {string} name
@@ -34,7 +42,7 @@ export class Subscription {
     this.#validateName(name)
     this.#validatePrice(price)
     this.#validateFrequency(frequency)
-    this.#validateCategory(category) 
+    this.#validateCategory(category)
 
     //Initialize properties
     this.#name = name
@@ -66,9 +74,9 @@ export class Subscription {
 
   #validateCategory(category) {
     if (typeof category !== 'string') {
-        throw new Error('Category must be a string')
+      throw new Error('Category must be a string')
     }
-}
+  }
 
   //Public getter methods
   /**

@@ -5,6 +5,8 @@
  * @version 1.0.0
  */
 
+import { FREQUENCY } from "./Subscription.js"
+
 export class CostCalculator {
     //Class constants
     /** @type {number} */
@@ -49,15 +51,15 @@ export class CostCalculator {
         const frequency = subscription.getFrequency()
         const price = subscription.getPrice()
 
-        if (frequency === 'weekly') {
+        if (frequency === FREQUENCY.WEEKLY) {
             return price / CostCalculator.HOURS_PER_WEEK
         }
 
-        if (frequency === 'monthly') {
+        if (frequency === FREQUENCY.MONTHLY) {
             return price / CostCalculator.HOURS_PER_MONTH
         }
 
-        if (frequency === 'yearly') {
+        if (frequency === FREQUENCY.YEARLY) {
             return price / CostCalculator.HOURS_PER_YEAR
         }
         return price
@@ -73,12 +75,11 @@ export class CostCalculator {
         const frequency = subscription.getFrequency()
         const price = subscription.getPrice()
 
-        if (frequency === 'monthly') {
+        if (frequency === FREQUENCY.MONTHLY) {
             return price / CostCalculator.WEEKS_PER_MONTH
         }
 
-
-        if (frequency === 'yearly') {
+        if (frequency === FREQUENCY.YEARLY) {
             return price / CostCalculator.WEEKS_PER_YEAR
         }
         return price
@@ -94,11 +95,11 @@ export class CostCalculator {
         const frequency = subscription.getFrequency()
         const price = subscription.getPrice()
 
-        if (frequency === 'weekly') {
+        if (frequency === FREQUENCY.WEEKLY) {
             return price * CostCalculator.WEEKS_PER_MONTH
         }
 
-        if (frequency === 'yearly') {
+        if (frequency === FREQUENCY.YEARLY) {
             return price / CostCalculator.MONTHS_PER_YEAR
         }
         return price
@@ -114,11 +115,11 @@ export class CostCalculator {
         const frequency = subscription.getFrequency()
         const price = subscription.getPrice()
 
-        if (frequency === 'weekly') {
+        if (frequency === FREQUENCY.WEEKLY) {
             return price * CostCalculator.WEEKS_PER_YEAR
         }
 
-        if (frequency === 'monthly') {
+        if (frequency === FREQUENCY.MONTHLY) {
             return price * CostCalculator.MONTHS_PER_YEAR
         }
         return price
