@@ -33,6 +33,12 @@ function setupTestData() {
 
 function testSubscriptionClass() {
     console.log('=== Testing Subscription Class ===')
+    console.log('Tests basic subscription creation, getter methods, status management, and usage tracking.')
+    console.log('EXPECTED BEHAVIOR:')
+    console.log('  - Subscriptions can be created with name, category, price and frequency')
+    console.log('  - All subscriptions are active by default')
+    console.log('  - Usage tracking starts at 0 hours')
+    console.log('  - Status can be toggled between active/inactive\n')
 
     //Test basic functionality
     console.log(`Name: ${netflix.getName()}`)
@@ -67,6 +73,13 @@ function testSubscriptionClass() {
 
 function testSubscriptionCollection() {
     console.log('=== Testing SubscriptionCollection Class ===')
+    console.log('Tests collection management: adding, removing, filtering, and searching subscriptions.')
+    console.log('EXPECTED BEHAVIOR:')
+    console.log('  - Multiple subscriptions can be added to a collection')
+    console.log('  - Search by name is case-insensitive and supports partial matching ("netfl" finds "Netflix")')
+    console.log('  - Subscriptions can be filtered by category (e.g., "streaming")')
+    console.log('  - Active and inactive subscriptions can be filtered separately')
+    console.log('  - Subscriptions can be removed from the collection\n')
 
     //Test multiple subscriptions
     collection.addSubscription(netflix)
@@ -108,6 +121,14 @@ function testSubscriptionCollection() {
 
 function testCostCalculator() {
     console.log('=== Testing CostCalculator Class ===')
+    console.log('Tests cost calculations and conversions between different billing frequencies.')
+    console.log('EXPECTED BEHAVIOR:')
+    console.log('  - Hourly costs are calculated by dividing price by hours per period')
+    console.log('  - Weekly costs: monthly/4.33, yearly/52.18, weekly stays same')
+    console.log('  - Monthly costs: weekly*4.33, yearly/12, monthly stays same (Netflix=139, Spotify=100, SATS=649.5)')
+    console.log('  - Yearly costs: weekly*52.18, monthly*12, yearly stays same')
+    console.log('  - Total costs sum all active subscriptions only')
+    console.log('  - Costs can be grouped by category (streaming, music, fitness)\n')
 
     // Re-add SATS for total cost calculations
     collection.addSubscription(sats)
@@ -169,6 +190,13 @@ function testCostCalculator() {
 
 function testUsageAnalyzer() {
     console.log('=== Testing UsageAnalyzer Class ===')
+    console.log('Tests usage efficiency analysis and identifying unused or underutilized subscriptions.')
+    console.log('EXPECTED BEHAVIOR:')
+    console.log('  - Cost per hour = monthly cost ÷ usage hours')
+    console.log('  - Underutilized subscriptions: cost per hour > specified maximum (e.g., SATS at 81.19 kr/hour > 15 limit)')
+    console.log('  - Unused subscriptions: active subscriptions with 0 usage hours')
+    console.log('  - Netflix with 15 hours usage should NOT appear in unused list\n')
+
 
     // Add usage data to existing subscriptions for testing
     spotify.addUsageHours(20)  // 20 hours of Spotify usage
@@ -224,6 +252,13 @@ function testUsageAnalyzer() {
 
 function testErrorHandling() {
     console.log('=== Testing Error Handling ===')
+    console.log('Tests that invalid inputs and operations throw appropriate errors.')
+    console.log('EXPECTED BEHAVIOR:')
+    console.log('  - Invalid inputs throw descriptive errors:')
+    console.log('    • Empty names, negative prices, invalid frequencies')
+    console.log('    • Negative usage hours')
+    console.log('    • Null subscriptions or invalid arrays')
+    console.log('    • Zero usage when analyzing cost per hour\n')
 
     // Test invalid subscription creation
     try {
@@ -298,28 +333,34 @@ function testErrorHandling() {
         }
     }
 }
-    // Test edge cases
-    function testEdgeCases() {
-        console.log('=== Testing Edge Cases ===')
+// Test edge cases
+function testEdgeCases() {
+    console.log('=== Testing Edge Cases ===')
+    console.log('Tests boundary conditions, empty collections, and operations on non-existent items.')
+    console.log('EXPECTED BEHAVIOR:')
+    console.log('  - Searches with no matches return empty array (0 results)')
+    console.log('  - Removing non-existent subscriptions returns false')
+    console.log('  - Empty collections return 0 for all counts and totals')
+    console.log('  - Operations on empty collections do not throw errors\n')
 
-        // Test search with no matches found
-        const notFound = collection.searchSubscriptionsByName('nonexistentservice')
-        console.log(`Search for non-existent service: ${notFound.length} results`)
+    // Test search with no matches found
+    const notFound = collection.searchSubscriptionsByName('nonexistentservice')
+    console.log(`Search for non-existent service: ${notFound.length} results`)
 
-        // Test remove non-existent subscription from collection
-        const notInCollection = new Subscription('NonExistent', 100, 'monthly', 'test')
-        const removeResult = collection.removeSubscription(notInCollection)
-        console.log(`Remove non-existent subscription in collection: ${removeResult}`)
+    // Test remove non-existent subscription from collection
+    const notInCollection = new Subscription('NonExistent', 100, 'monthly', 'test')
+    const removeResult = collection.removeSubscription(notInCollection)
+    console.log(`Remove non-existent subscription in collection: ${removeResult}`)
 
-        // Test empty collection scenarios
-        const emptyCollection = new SubscriptionCollection()
-        console.log(`Empty collection size: ${emptyCollection.getAllSubscriptions().length}`)
-        console.log(`Active in empty collection: ${emptyCollection.getActiveSubscriptions().length}`)
-        
-        // Test calculator with empty array
-        const totalCostEmpty = costCalculator.calculateTotalMonthlyCost(emptyCollection.getAllSubscriptions())
-        console.log(`Total monthly cost of empty collection: ${totalCostEmpty} kr`)
-    }
+    // Test empty collection scenarios
+    const emptyCollection = new SubscriptionCollection()
+    console.log(`Empty collection size: ${emptyCollection.getAllSubscriptions().length}`)
+    console.log(`Active in empty collection: ${emptyCollection.getActiveSubscriptions().length}`)
+
+    // Test calculator with empty array
+    const totalCostEmpty = costCalculator.calculateTotalMonthlyCost(emptyCollection.getAllSubscriptions())
+    console.log(`Total monthly cost of empty collection: ${totalCostEmpty} kr`)
+}
 
 // Main execution - comment out any section you don't want to run
 setupTestData()
