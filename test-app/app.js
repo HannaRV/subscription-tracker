@@ -33,18 +33,19 @@ function setupTestData() {
 
 function testSubscriptionClass() {
     console.log('=== Testing Subscription Class ===')
-    console.log('Tests basic subscription creation, getter methods, status management, and usage tracking.')
+    console.log('Tests basic subscription creation, getter methods, status management, and usage tracking.\n')
     console.log('EXPECTED BEHAVIOR:')
     console.log('  - Subscriptions can be created with name, category, price and frequency')
     console.log('  - All subscriptions are active by default')
-    console.log('  - Usage tracking starts at 0 hours')
-    console.log('  - Status can be toggled between active/inactive\n')
+    console.log('  - Status can be toggled between active/inactive')
+    console.log('  - Usage tracking starts at 0 hours\n')
+
 
     //Test basic functionality
     console.log(`Name: ${netflix.getName()}`)
     console.log(`Category: ${netflix.getCategory()}`)
     console.log(`Price: ${netflix.getPrice()} kr`)
-    console.log(`Frequency: ${netflix.getFrequency()}`)
+    console.log(`Frequency: ${netflix.getFrequency()}\n`)
 
     //Test create monthly subscription
     console.log(`${netflix.getName()}: ${netflix.getPrice()} kr per ${netflix.getFrequency()}`)
@@ -53,7 +54,7 @@ function testSubscriptionClass() {
     console.log(`${spotify.getName()}: ${spotify.getPrice()} kr per ${spotify.getFrequency()}`)
 
     //Test create weekly subscription
-    console.log(`${sats.getName()}: ${sats.getPrice()} kr per ${sats.getFrequency()}`)
+    console.log(`${sats.getName()}: ${sats.getPrice()} kr per ${sats.getFrequency()}\n`)
 
     // Test active/inactive functionality
     console.log(`Netflix initial active status is: ${netflix.isActive()}`)
@@ -62,7 +63,7 @@ function testSubscriptionClass() {
     console.log(`Netflix is now ${netflix.isActive() ? 'active' : 'deactivated'}`)
 
     netflix.activate()
-    console.log(`Netflix is now ${netflix.isActive() ? 'active' : 'deactivated'}`)
+    console.log(`Netflix is now ${netflix.isActive() ? 'active' : 'deactivated'}\n`)
 
     // Test usage tracking
     console.log(`Netflix initial usage: ${netflix.getUsageHours()} hours`)
@@ -73,7 +74,7 @@ function testSubscriptionClass() {
 
 function testSubscriptionCollection() {
     console.log('=== Testing SubscriptionCollection Class ===')
-    console.log('Tests collection management: adding, removing, filtering, and searching subscriptions.')
+    console.log('Tests collection management: adding, removing, filtering, and searching subscriptions.\n')
     console.log('EXPECTED BEHAVIOR:')
     console.log('  - Multiple subscriptions can be added to a collection')
     console.log('  - Search by name is case-insensitive and supports partial matching ("netfl" finds "Netflix")')
@@ -121,7 +122,7 @@ function testSubscriptionCollection() {
 
 function testCostCalculator() {
     console.log('=== Testing CostCalculator Class ===')
-    console.log('Tests cost calculations and conversions between different billing frequencies.')
+    console.log('Tests cost calculations and conversions between different billing frequencies.\n')
     console.log('EXPECTED BEHAVIOR:')
     console.log('  - Hourly costs are calculated by dividing price by hours per period')
     console.log('  - Weekly costs: monthly/4.33, yearly/52.18, weekly stays same')
@@ -136,22 +137,22 @@ function testCostCalculator() {
     // Test hourly cost calculations
     console.log(`Netflix hourly cost: ${costCalculator.calculateHourlyCost(netflix)} kr`)
     console.log(`Spotify hourly cost: ${costCalculator.calculateHourlyCost(spotify)} kr`)
-    console.log(`SATS hourly cost: ${costCalculator.calculateHourlyCost(sats)} kr`)
+    console.log(`SATS hourly cost: ${costCalculator.calculateHourlyCost(sats)} kr\n`)
 
     // Test weekly cost calculations
     console.log(`Netflix weekly cost: ${costCalculator.calculateWeeklyCost(netflix)} kr`)
     console.log(`Spotify weekly cost: ${costCalculator.calculateWeeklyCost(spotify)} kr`)
-    console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyCost(sats)} kr`)
+    console.log(`SATS weekly cost: ${costCalculator.calculateWeeklyCost(sats)} kr\n`)
 
     // Test monthly cost calculations
     console.log(`Netflix monthly cost: ${costCalculator.calculateMonthlyCost(netflix)} kr`)
     console.log(`Spotify monthly cost: ${costCalculator.calculateMonthlyCost(spotify)} kr`)
-    console.log(`SATS monthly cost: ${costCalculator.calculateMonthlyCost(sats)} kr`)
+    console.log(`SATS monthly cost: ${costCalculator.calculateMonthlyCost(sats)} kr\n`)
 
     // Test yearly cost calculations
     console.log(`Netflix yearly cost: ${costCalculator.calculateYearlyCost(netflix)} kr`)
     console.log(`Spotify yearly cost: ${costCalculator.calculateYearlyCost(spotify)} kr`)
-    console.log(`SATS yearly cost: ${costCalculator.calculateYearlyCost(sats)} kr`)
+    console.log(`SATS yearly cost: ${costCalculator.calculateYearlyCost(sats)} kr\n`)
 
     // Test total cost calculations
     const totalWeeklyCost = costCalculator.calculateTotalWeeklyCost(collection.getAllSubscriptions())
@@ -161,7 +162,7 @@ function testCostCalculator() {
     console.log(`Total monthly cost for all subscriptions: ${totalMonthlyCost} kr`)
 
     const totalYearlyCost = costCalculator.calculateTotalYearlyCost(collection.getAllSubscriptions())
-    console.log(`Total yearly cost for all subscriptions: ${totalYearlyCost} kr`)
+    console.log(`Total yearly cost for all subscriptions: ${totalYearlyCost} kr\n`)
 
     // Test cost by category
     const hboMax = new Subscription('HBO Max', 109, 'monthly', 'streaming')
@@ -190,7 +191,7 @@ function testCostCalculator() {
 
 function testUsageAnalyzer() {
     console.log('=== Testing UsageAnalyzer Class ===')
-    console.log('Tests usage efficiency analysis and identifying unused or underutilized subscriptions.')
+    console.log('Tests usage efficiency analysis and identifying unused or underutilized subscriptions.\n')
     console.log('EXPECTED BEHAVIOR:')
     console.log('  - Cost per hour = monthly cost ÷ usage hours')
     console.log('  - Underutilized subscriptions: cost per hour > specified maximum (e.g., SATS at 81.19 kr/hour > 15 limit)')
@@ -212,7 +213,7 @@ function testUsageAnalyzer() {
     console.log(`Spotify cost per hour: ${analyzer.analyzeCostPerHour(spotify, costCalculator).toFixed(2)} kr/hour`)
     console.log(`SATS cost per hour: ${analyzer.analyzeCostPerHour(sats, costCalculator).toFixed(2)} kr/hour`)
     if (hboMax) {
-        console.log(`HBO Max cost per hour: ${analyzer.analyzeCostPerHour(hboMax, costCalculator).toFixed(2)} kr/hour`)
+        console.log(`HBO Max cost per hour: ${analyzer.analyzeCostPerHour(hboMax, costCalculator).toFixed(2)} kr/hour\n`)
     }
 
     console.log('--- Testing findUnderutilizedSubscriptions ---')
@@ -225,7 +226,7 @@ function testUsageAnalyzer() {
 
     console.log(`Found ${underutilized.length} underutilized subscriptions with cost > ${maxCostPerHour} kr/hour:`)
     underutilized.forEach(item => {
-        console.log(`- ${item.subscription.getName()}: ${item.costPerHour.toFixed(2)} kr/hour`)
+        console.log(`- ${item.subscription.getName()}: ${item.costPerHour.toFixed(2)} kr/hour\n`)
     })
 
     console.log('--- Testing findUnusedSubscriptions ---')
@@ -247,12 +248,12 @@ function testUsageAnalyzer() {
     })
 
     console.log(`Netflix (${netflix.getUsageHours()} hours) should NOT be in unused list`)
-    console.log(`Netflix in unused list: ${unusedSubscriptions.includes(netflix)}`)
+    console.log(`Netflix in unused list: ${unusedSubscriptions.includes(netflix)}\n`)
 }
 
 function testErrorHandling() {
     console.log('=== Testing Error Handling ===')
-    console.log('Tests that invalid inputs and operations throw appropriate errors.')
+    console.log('Tests that invalid inputs and operations throw appropriate errors.\n')
     console.log('EXPECTED BEHAVIOR:')
     console.log('  - Invalid inputs throw descriptive errors:')
     console.log('    • Empty names, negative prices, invalid frequencies')
@@ -336,7 +337,7 @@ function testErrorHandling() {
 // Test edge cases
 function testEdgeCases() {
     console.log('=== Testing Edge Cases ===')
-    console.log('Tests boundary conditions, empty collections, and operations on non-existent items.')
+    console.log('Tests boundary conditions, empty collections, and operations on non-existent items.\n')
     console.log('EXPECTED BEHAVIOR:')
     console.log('  - Searches with no matches return empty array (0 results)')
     console.log('  - Removing non-existent subscriptions returns false')
