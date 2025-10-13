@@ -76,7 +76,8 @@ git clone https://github.com/HannaRV/subscription-tracker
 ### Subscription → [Complete Subscription API](docs/API/Subscription.md)
 ```javascript
 const subscription = new Subscription(name, price, frequency, category)
-subscription.activate() / subscription.deactivate()
+subscription.activate()
+subscription.deactivate()
 subscription.addUsageHours(hours)
 ```
 
