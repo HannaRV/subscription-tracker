@@ -1,5 +1,5 @@
 {
-  "name": "subscription-tracker",
+  "name": "@hr222sy/subscription-tracker",
   "version": "1.0.0",
   "description": "A JavaScript module for managing and analyzing personal subscriptions with cost calculations and usage tracking",
   "type": "module",
