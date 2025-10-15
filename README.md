@@ -43,7 +43,7 @@ The module addresses common problems:
 ## Quick Start
 
 ```javascript
-import { Subscription, SubscriptionCollection, CostCalculator, UsageAnalyzer } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection, CostCalculator, UsageAnalyzer } from '@hr222sy/subscription-tracker'
 
 // Create and manage subscriptions
 const netflix = new Subscription("Netflix", 139, "monthly", "streaming")
@@ -61,12 +61,16 @@ const analyzer = new UsageAnalyzer()
 const costPerHour = analyzer.analyzeCostPerHour(netflix, calculator)
 console.log(`Cost per hour: ${costPerHour.toFixed(2)} kr`)
 ```
+## Links
+
+- 📦 [npm package](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
+- 🐙 [GitHub repository](https://github.com/HannaRV/subscription-tracker)
 
 ## Installation
 
+Install via npm:
 ```bash
-# Clone from GitHub
-git clone https://github.com/HannaRV/subscription-tracker
+npm install @hr222sy/subscription-tracker
 ```
 
 ## Essential API
