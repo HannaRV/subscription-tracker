@@ -144,7 +144,7 @@ Groups and sums monthly costs by subscription category for active subscriptions 
 ## Example
 
 ```javascript
-import { Subscription, SubscriptionCollection, CostCalculator } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection, CostCalculator } from '@hr222sy/subscription-tracker'
 
 const calculator = new CostCalculator()
 

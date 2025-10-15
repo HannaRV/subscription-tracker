@@ -1,4 +1,8 @@
 # Subscription Tracker
+
+[![npm version](https://img.shields.io/npm/v/@hr222sy/subscription-tracker)](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ⚠️ Disclaimer: This is my first module, built for a school assignment and clean code practice. It may not be fully polished.
 
 A JavaScript module for managing and analyzing personal subscriptions. Convert between billing frequencies, identify unused services, analyze cost efficiency and make calculated decisions about which subscriptions to keep or cancel.

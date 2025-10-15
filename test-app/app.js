@@ -5,13 +5,13 @@
  * @version 1.0.0
 
 * TEST SECTIONS:
- * Line 32:  testSubscriptionClass() - Basic functionality, status management, usage tracking
- * Line 66:  testSubscriptionCollection() - Adding, removing, filtering, searching subscriptions  
- * Line 107:  testCostCalculator() - Cost calculations and conversions between frequencies
- * Line 168: testUsageAnalyzer() - Usage efficiency analysis and finding unused subscriptions
- * Line 223: testErrorHandling() - Input validation and error conditions
- * Line 286: testEdgeCases() - Boundary conditions and empty/invalid inputs
- * Line 324: Main execution - Comment out functions to run selective tests
+ * Line 34:  testSubscriptionClass() - Basic functionality, status management, usage tracking
+ * Line 75:  testSubscriptionCollection() - Adding, removing, filtering, searching subscriptions  
+ * Line 123:  testCostCalculator() - Cost calculations and conversions between frequencies
+ * Line 192: testUsageAnalyzer() - Usage efficiency analysis and finding unused subscriptions
+ * Line 254: testErrorHandling() - Input validation and error conditions
+ * Line 338: testEdgeCases() - Boundary conditions and empty/invalid inputs
+ * Line 366: Main execution - Comment out functions to run selective tests
  * 
  * Usage: Ctrl+G (VS Code/most editors) to jump to line number
  * To run selective tests: Comment out unwanted function calls at bottom of file

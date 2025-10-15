@@ -59,7 +59,7 @@ subscription.getUsageHours()       // Returns number - total usage hours
 ## Example
 
 ```javascript
-import { Subscription } from 'subscription-tracker'
+import { Subscription } from '@hr222sy/subscription-tracker'
 
 // Create subscriptions
 const netflix = new Subscription("Netflix", 139, "monthly", "streaming")

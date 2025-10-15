@@ -78,7 +78,7 @@ Identifies active subscriptions that have never been used (0 usage hours), which
 ## Example
 
 ```javascript
-import { Subscription, SubscriptionCollection, CostCalculator, UsageAnalyzer } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection, CostCalculator, UsageAnalyzer } from '@hr222sy/subscription-tracker'
 
 const analyzer = new UsageAnalyzer()
 const calculator = new CostCalculator()

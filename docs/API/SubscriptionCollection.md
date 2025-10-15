@@ -92,7 +92,7 @@ Performs case-insensitive partial name matching.
 ## Example
 
 ```javascript
-import { Subscription, SubscriptionCollection } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection } from '@hr222sy/subscription-tracker'
 
 const collection = new SubscriptionCollection()
 const netflix = new Subscription("Netflix", 139, "monthly", "streaming")
