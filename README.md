@@ -28,9 +28,15 @@ The module addresses common problems:
 - Calculating total spending across categories
 - Making calculated analysis of which subscriptions to keep or cancel
 
+## Links
+
+- 📦 [npm package](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
+- 🐙 [GitHub repository](https://github.com/HannaRV/subscription-tracker)
+
 ## Table of Contents
 - [Core Features](#core-features)
 - [Purpose](#purpose)
+- [Links](#links)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Essential API](#essential-api)
@@ -65,10 +71,6 @@ const analyzer = new UsageAnalyzer()
 const costPerHour = analyzer.analyzeCostPerHour(netflix, calculator)
 console.log(`Cost per hour: ${costPerHour.toFixed(2)} kr`)
 ```
-## Links
-
-- 📦 [npm package](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
-- 🐙 [GitHub repository](https://github.com/HannaRV/subscription-tracker)
 
 ## Installation
 
