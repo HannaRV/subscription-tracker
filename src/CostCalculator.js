@@ -8,7 +8,6 @@
 import { FREQUENCY } from "./Subscription.js"
 
 export class CostCalculator {
-    //Class constants
     /** @type {number} */
     static HOURS_PER_DAY = 24
 
@@ -29,7 +28,7 @@ export class CostCalculator {
 
     /** @type {number} */
     static WEEKS_PER_YEAR = 52.18 // Average weeks per year including leap years
-    
+
     /** @type {number} */
     static MONTHS_PER_YEAR = 12
 

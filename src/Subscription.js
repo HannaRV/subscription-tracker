@@ -36,13 +36,11 @@ export class Subscription {
    */
   constructor(name, price, frequency, category = 'other') {
 
-    //Validate inputs
     this.#validateName(name)
     this.#validatePrice(price)
     this.#validateFrequency(frequency)
     this.#validateCategory(category)
 
-    //Initialize properties
     this.#name = name
     this.#price = price
     this.#frequency = frequency
