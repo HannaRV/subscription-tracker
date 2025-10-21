@@ -12,7 +12,6 @@ export const FREQUENCY = {
 }
 
 export class Subscription {
-
   #name
   #price
   #frequency
@@ -25,7 +24,6 @@ export class Subscription {
    * @type {string[]}
    */
   static VALID_FREQUENCIES = Object.values(FREQUENCY)
-
 
   /**
    * @param {string} name

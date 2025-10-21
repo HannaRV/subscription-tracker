@@ -61,6 +61,7 @@ export class SubscriptionCollection {
     }
 
     /**
+     * 
      * @param {string} category
      * @returns {Subscription[]}
      */
